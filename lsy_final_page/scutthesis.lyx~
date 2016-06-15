@@ -1,0 +1,8574 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass scutthesis
+\begin_preamble
+\usepackage[english]{babel}
+\usepackage{xeCJK}
+\usepackage{CJKnumb}
+\end_preamble
+\options pdfcover
+\use_default_options true
+\maintain_unincluded_children false
+\language chinese-simplified
+\language_package none
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts true
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format pdf4
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_title "博士论文标题"
+\pdf_author "你的名字"
+\pdf_subject "山东理工大学学士学位论文"
+\pdf_keywords "关键字1, 关键字2"
+\pdf_bookmarks true
+\pdf_bookmarksnumbered true
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle false
+\pdf_quoted_options "unicode=false,linkcolor=blue, anchorcolor=black, citecolor=olive, filecolor=magenta, menucolor=red, urlcolor=magenta, pdfstartview=FitH"
+\papersize default
+\use_geometry false
+\use_package amsmath 0
+\use_package amssymb 0
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index 索引
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+基于树莓派、云服务器和Android平台的物联网简易系统开发
+\end_layout
+
+\begin_layout Author
+JamesLiAndroid
+\end_layout
+
+\begin_layout Supervisor
+指导教师：subaochen在路上
+\begin_inset space \space{}
+\end_inset
+
+副教授
+\end_layout
+
+\begin_layout Institue
+山东理工大学
+\end_layout
+
+\begin_layout Date
+2016年6月15日
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+frontmatter
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout AbstractCN
+当前世界，信息科技飞速发展，传统的单片机控制硬件电路已经不能满足社会发展的需要。在互联网的大潮下，传感器接入互联网已经成为现实，物联网的发展正在如火如荼的进行。
+在我的毕业设计中，将依赖于MQTT协议进行一个简单物联网系统的实践，接入传感器，监控传感器数据，并对相关后续设备进行控制。通过对Android平台、云服务器以及
+树莓派的整合，探索一个开源、可靠、简洁的物联网系统，为后续的研究和使用奠定基础。通过本文，尽量将搭建开发过程中的细节展示出来，希望后续的同学通过阅读本文，能够按
+照文章描述一步步构建自己的物联网系统，并发散思维，能够继续改进和创新，打造属于自己的物联网系统。
+\end_layout
+
+\begin_layout KeywordsCN
+物联网；MQTT；传感器；Android；树莓派
+\end_layout
+
+\begin_layout AbstractEN
+The current world, with the rapid development of information technology,
+ the traditional single-chip hardware control circuit can not meet the needs
+ of social development.
+ In the tide of the Internet, a sensor connected to the Internet has become
+ a reality, the development of things is in full swing.
+ I graduated from the design, the protocol will depend on MQTT to practice
+ a simple system of things, the access sensor to monitor sensor data, and
+ related follow-up control over the device.
+ Through the integration of the Android platform, cloud server and Raspberry
+ Pi explore an open source, reliable, simple networking system, lay the
+ foundation for further research and use.
+ In this article, try to set up the development process of the details of
+ the show came out, hoping to follow the students through reading this article,
+ in accordance with article describes a step by step to build their own
+ system of things, and divergent thinking, to continue to improve and innovate,
+ to create their own material networking system.
+\end_layout
+
+\begin_layout KeywordsEN
+IOT;MQTT;Sensor;Android;Raspi
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+mainmatter
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+系统构想
+\end_layout
+
+\begin_layout Section
+什么是物联网
+\end_layout
+
+\begin_layout Standard
+从一个简单的使用场景引入，就是把家里的灯泡、空调、彩电、洗衣机等等接入互联网，来实现远程控制。而维基百科是这样定义的
+\end_layout
+
+\begin_layout Quotation
+物联网（英语：Internet　of　Things，缩写IoT）是互联网、传统电信网等信息承载体，让所有能行使独立功能的普通物体实现互联互通的网络。
+\end_layout
+
+\begin_layout Standard
+再大白话一点，物联网就是随时随地通过网络去监控和控制“远在天边”的传感器，就像你回家打开灯泡需要按开关是一样的，只不过这个开关转到你的“掌上终端”－－手机上了，
+而且你也不是走过去按开关，而是远程“按”！严格来说，物联网将最底层的传感器和控制器接入到网络当中，使它们可以通过互联网被远程操控。物联网是一个中介，它构建了人和
+物体、物体和物体之间的通路。
+\end_layout
+
+\begin_layout Section
+整体思路构想
+\end_layout
+
+\begin_layout Standard
+本文通过物联网的实践，将自己大学四年中所学习的内容进行梳理总结，结合android终端app开发、服务端开发和树莓派+Arduino的组合开发的内容，来构建自己
+的物联网系统。主要实现的内容是监测和控制，监测方面简单来说就是获取传感器数据，复杂点讲就是对获取的数据进行分析，制定相应的策略，来应对异常变化下的后续控制；控制
+方面简单来说就是类似于打开开关的操作，控制不仅仅是单独控制，还要添加到控制策略中，来应对环境变化。这两点是这次毕业论文中的核心，我将围绕这两点来设计整个系统，力
+求完整和简洁。希望你看了这篇论文后，可以根据论文上所阐述的内容，做出你自己的物联网系统来！
+\end_layout
+
+\begin_layout Chapter
+场景、需求与方案
+\end_layout
+
+\begin_layout Section
+具体场景
+\end_layout
+
+\begin_layout Standard
+假设一个场景，夏天，室外36摄氏度高温，人走在回到家途中。但是你想看一下家中的温度如何，来确定是否开启空调降低温度。那么会有这样一个需求：得知家中温度太高，比如
+室内温度32摄氏度，想先远程打开空调，让它把室内温度降低，这样到家后不用受高温折磨；但是如果室温是20摄氏度，不需要远程打开空调，室内温度相对来说情况很好。如果
+室温超过30摄氏度，需要进行降温，降到24摄氏度时，停止空调运转，这样达到人体的舒适温度了，没有必要在继续开启。但是人的感觉是不断变化的，室温降到24摄氏度了，
+还是觉得不够，再开会儿空调吧，过段时间再主动去关闭它。
+\end_layout
+
+\begin_layout Standard
+那么这就是一个物联网中完整的使用场景，有监测（温度的数值变化）、有控制（打开空调）、有控制策略（温度变化到某个值时空调进行开启与关闭的动作）。这个就是当前所面对
+的使用场景，下面针对这个场景，进行需求分析。
+\end_layout
+
+\begin_layout Section
+需求分析
+\end_layout
+
+\begin_layout Standard
+根据上面的场景，进行需求分析，在这里先列出来：
+\end_layout
+
+\begin_layout Enumerate
+监测室内温度，并发送到终端上
+\end_layout
+
+\begin_layout Enumerate
+控制空调的开关状态，发送控制动作完成后的空调状态到终端
+\end_layout
+
+\begin_layout Standard
+需求很简单，就是这两条通路——监测和控制，但是需要制定控制策略，如下：
+\end_layout
+
+\begin_layout Standard
+如果空调处于关闭状态，当室内温度高于30摄氏度时，询问用户是否开启空调；如果空调处于开启状态，当室内温度低于24摄氏度时，询问用户是否关闭空调，如果用户选择不关
+闭，会每10分钟提醒一次，直到关闭操作正确执行为止。
+\end_layout
+
+\begin_layout Standard
+这里假定，空调接入物联网系统的时候，只对空调实现简单的开关功能。而且将开关操作的权利交给用户，完全由用户来执行。
+\end_layout
+
+\begin_layout Section
+方案制定
+\end_layout
+
+\begin_layout Standard
+这里需要规划三个部分的内容，分为Android端app开发，服务端开发以及树莓派+Arduino控制传感器的开发。树莓派+Arduino的开发又划分为程序编写和
+硬件电路搭建。app实现的功能是接收温度数据并展示，以及控制指令的发送；服务端实现的功能是消息转发；树莓派和Arduino实现的功能是数据上传，以及接收控制指令
+并执行（打开或关闭开关）。这里需要解释一下为什么使用树莓派和Arduino配合控制硬件电路。树莓派承担的角色相当于一个路由器的功能，对外连接互联网，进行数据的发
+送和接收，并将控制指令发送到Arduino上来执行；Arduino承担的是一个面向传感器的角色，由于树莓派的IO口比较弱，虽然引脚较多但是性能不佳而且容易损坏，
+而Arduino本身的定位就是单片机，其IO口性能强，不易损坏，可以满足需求，所以接入Arduino来代替树莓派上的IO口，将Arduino作为树莓派的接口板使
+用。
+\end_layout
+
+\begin_layout Section
+整体设计图示
+\end_layout
+
+\begin_layout Standard
+下面通过UML图示来详细展示整个系统中的角色划分以及控制流程。图
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:用例图分析"
+
+\end_inset
+
+展示了整个操作环境中，所有的角色以及角色职能；图
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:温度数据采集流程"
+
+\end_inset
+
+展示了温度数据采集的流程；图
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:继电器控制流程"
+
+\end_inset
+
+展示了继电器控制流程；图
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:温度过高开启空调的操作"
+
+\end_inset
+
+和图
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:温度过低关闭空调的流程"
+
+\end_inset
+
+分别展示了温度过高开启空调的操作流程，以及温度过低关闭空调的操作流程。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figure/用例图.png
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:用例图分析"
+
+\end_inset
+
+用例图分析
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figure/温度采集流程.png
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:温度数据采集流程"
+
+\end_inset
+
+温度数据采集流程
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figure/继电器控制流程.png
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:继电器控制流程"
+
+\end_inset
+
+继电器控制流程
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figure/温度过高开启空调的流程.png
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:温度过高开启空调的操作"
+
+\end_inset
+
+温度过高开启空调的操作
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figure/温度过低关闭空调的流程.png
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:温度过低关闭空调的流程"
+
+\end_inset
+
+温度过低关闭空调的流程
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+准备工作
+\end_layout
+
+\begin_layout Section
+硬件准备
+\end_layout
+
+\begin_layout Enumerate
+树莓派2代B型开发板一块，SD卡（做系统用，需要class10标准的，8GB起）一张，读卡器一个，以及树莓派官方屏幕，免驱无线网卡和5V 2A电源一个
+\end_layout
+
+\begin_layout Enumerate
+Arduino UNO R3一块以及一根Arduino leonardo线
+\end_layout
+
+\begin_layout Enumerate
+DHT11温湿度采集模块，三线制或者四线制
+\end_layout
+
+\begin_layout Enumerate
+四路继电器模块
+\end_layout
+
+\begin_layout Enumerate
+发光二极管若干，使用红绿蓝等多种颜色的，便于区分不同功能
+\end_layout
+
+\begin_layout Enumerate
+杜邦线，公对公母对母的都需要，每一个类型至少准备30根
+\end_layout
+
+\begin_layout Enumerate
+Android终端一台，我这里用的我的平板来模拟，系统版本为Android6.0，当然应用程序最低兼容到Android4.0版本的系统
+\end_layout
+
+\begin_layout Section
+软件准备
+\end_layout
+
+\begin_layout Enumerate
+Android App开发：使用Android Studio 2.0开发，App最低版本兼容到Android 4.0
+\end_layout
+
+\begin_layout Enumerate
+服务端开发，使用阿里云服务器，镜像为Ubuntu14.04的系统，通过ssh连接服务器进行操作，直接在服务端使用vim编写程序
+\end_layout
+
+\begin_layout Enumerate
+树莓派，使用Raspbian jessie镜像作为系统，该镜像基于debian8，同样通过ssh连接树莓派进行操作，直接在树莓派端使用vim来编写程序
+\end_layout
+
+\begin_layout Enumerate
+电路图绘制，使用fritzing-0.9.2b，跨平台的电路图绘制工具，对Arduino的相关操作友好，免安装
+\end_layout
+
+\begin_layout Section
+开发前的语言和开发框架准备
+\end_layout
+
+\begin_layout Enumerate
+Android端：使用paho框架中的Android Service Client，版本为1.0.2，使用java语言编写，解析json格式的数据时借助Gson框架
+来进行
+\end_layout
+
+\begin_layout Enumerate
+服务端：使用hbmqtt框架，python语言编写
+\end_layout
+
+\begin_layout Enumerate
+树莓派+Arduino组合：UUGear框架，包括接口板程序和树莓派上的编程，使用python语言编写
+\end_layout
+
+\begin_layout Standard
+　如果在这一小节了解到的不多，可以先放过，后续会一步一步导入所用到的东西，写在这里需要有个提醒，首先要学习java语言的基本语法以及python语言的基本语法。
+\end_layout
+
+\begin_layout Chapter
+系统设计
+\end_layout
+
+\begin_layout Section
+MQTT协议v3.1.1
+\end_layout
+
+\begin_layout Standard
+MQTT协议是传输过程中的核心，需要依赖这个协议实现通信接口的编写。在这里不打算讨论协议的详细实现，说一下需要知道的基本内容，而这些内容是后续制定通信协议的基础
+。
+\end_layout
+
+\begin_layout Standard
+那么为什么采用这个协议？一句话，简单！
+\end_layout
+
+\begin_layout Standard
+MQTT是一个客户端服务端架构的发布/订阅模式的消息传输协议。它的设计思想是开源、可靠、轻巧、简单，MQTT的传输格式非常精小，最小的数据包只有2个比特，且无应
+用消息头。MQTT可以保证消息的可靠性，它包括三种不同的服务质量（最多只传一次、最少被传一次、一次且只传一次），如果客户端意外掉线，可以使用“遗愿”发布一条消息
+，同时支持持久订阅。MQTT在物联网以及移动应用中的优势有：
+\end_layout
+
+\begin_layout Enumerate
+可靠传输。MQTT可以保证消息可靠安全的传输，并可以与企业应用简易集成。 
+\end_layout
+
+\begin_layout Enumerate
+消息推送。支持消息实时通知、丰富的推送内容、灵活的Pub-Sub以及消息存储和过滤。
+\end_layout
+
+\begin_layout Enumerate
+低带宽、低耗能、低成本。占用移动应用程序带宽小，并且带宽利用率高，耗电量较少。
+\end_layout
+
+\begin_layout Standard
+MQTT协议不依附于平台存在，无论使用C语言还是python语言编程，面向Android平台还是Linux平台，都可以。
+\end_layout
+
+\begin_layout Standard
+上面是一个简单的介绍，下面是真正需要的东西－－控制报文类型。MQTT协议一共有14种控制报文类型，如图
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:message_type"
+
+\end_inset
+
+所示。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figure/mesage_type.png
+	lyxscale 60
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:message_type"
+
+\end_inset
+
+MQTT协议控制报文类型
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+这14种控制报文类型都用得着，在制定通信接口的时候标示该接口使用的消息类型。
+\end_layout
+
+\begin_layout Standard
+除了消息类型，这里还有三种消息发布服务质量Qos，分别是：
+\end_layout
+
+\begin_layout Enumerate
+“至多一次”（Qos=0），消息发布完全依赖底层TCP/IP网络。会发生消息丢失或重复。这一级别可用于如下情况，环境传感器数据（比如温度、湿度数据），丢失一次读
+记录无所谓，因为不久后还会有第二次发送。
+\end_layout
+
+\begin_layout Enumerate
+“至少一次”（Qos=1），确保消息到达，但消息重复可能会发生，可以应用在确保消息到达而对精确度要求不高的场景。
+\end_layout
+
+\begin_layout Enumerate
+“只有一次”（Qos=2），确保消息到达一次。这一级别可用于网吧计费系统一类的精确系统中，消息重复或丢失会导致不正确的结果。
+\end_layout
+
+\begin_layout Standard
+结合这两项内容，这样就可以灵活的制定通信接口。
+\end_layout
+
+\begin_layout Standard
+那么MQTT协议是发布/订阅模式的消息传输协议，这两种模式有自己特定的内容要求，下面看一下具体的要求：
+\end_layout
+
+\begin_layout Enumerate
+发布（Publish）模式，需要确定三项内容，第一是标题（Title），通过标题来区分各项消息；第二是消息内容（Message），这时真正需要获取的内容，根据消
+息内容进行后续操作；第三是服务质量（Qos），应用在不同场景下。这三项内容是明确需要提交到服务端的，缺一不可。
+\end_layout
+
+\begin_layout Enumerate
+订阅（Subscribe）模式，只需要确定两项内容，第一是标题（Title），第二是服务质量（Qos）。
+\end_layout
+
+\begin_layout Standard
+了解这些内容后，下面开始制定通信接口。
+\end_layout
+
+\begin_layout Section
+通信接口
+\end_layout
+
+\begin_layout Standard
+在通信接口中，需要指明发布者和订阅者的角色，然后制定标题和服务质量，最后是消息内容，消息内容使用json格式数据构建。然后给出实例，包含成功情况下的消息内容，以
+及失败情况下的消息内容。
+\end_layout
+
+\begin_layout Subsection
+温度信息传输接口
+\end_layout
+
+\begin_layout Standard
+发布者（Publisher）：树莓派+Arduino
+\end_layout
+
+\begin_layout Standard
+订阅者（Subscriber）：Android端
+\end_layout
+
+\begin_layout Standard
+标题（Title）：temperature_get
+\end_layout
+
+\begin_layout Standard
+服务质量（Qos）：0
+\end_layout
+
+\begin_layout Standard
+\align block
+消息内容（Message）：
+\end_layout
+
+\begin_layout Enumerate
+\align block
+成功：{
+\begin_inset Quotes erd
+\end_inset
+
+status
+\begin_inset Quotes erd
+\end_inset
+
+ : 0, 
+\begin_inset Quotes eld
+\end_inset
+
+temp_get
+\begin_inset Quotes erd
+\end_inset
+
+: “25”}(单位：摄氏度)
+\end_layout
+
+\begin_layout Enumerate
+\align block
+失败：{
+\begin_inset Quotes erd
+\end_inset
+
+status
+\begin_inset Quotes erd
+\end_inset
+
+ : 1, 
+\begin_inset Quotes eld
+\end_inset
+
+temp_get
+\begin_inset Quotes erd
+\end_inset
+
+: 
+\begin_inset Quotes eld
+\end_inset
+
+null
+\begin_inset Quotes erd
+\end_inset
+
+}
+\end_layout
+
+\begin_layout Standard
+说明：温度信息的获取，通信质量要求不高，即使丢失，只要后续采集的温度信息能够顺利到达就可以。json数据中，temp_get对应的后边的值是DHT11采集的温度
+数据。
+\end_layout
+
+\begin_layout Subsection
+继电器控制信息传输接口
+\end_layout
+
+\begin_layout Standard
+发布者（Publisher）：Android端
+\end_layout
+
+\begin_layout Standard
+订阅者（Subscriber）：树莓派+Arduino
+\end_layout
+
+\begin_layout Standard
+标题（Title）：switch
+\end_layout
+
+\begin_layout Standard
+服务质量（Qos）：2
+\end_layout
+
+\begin_layout Standard
+\align block
+消息内容（Message）：
+\end_layout
+
+\begin_layout Standard
+{
+\begin_inset Quotes erd
+\end_inset
+
+status
+\begin_inset Quotes erd
+\end_inset
+
+ : 0, 
+\begin_inset Quotes eld
+\end_inset
+
+port
+\begin_inset Quotes erd
+\end_inset
+
+: 15,
+\begin_inset Quotes eld
+\end_inset
+
+isOn
+\begin_inset Quotes erd
+\end_inset
+
+: 
+\begin_inset Quotes eld
+\end_inset
+
+1
+\begin_inset Quotes erd
+\end_inset
+
+}（继电器打开）或者{
+\begin_inset Quotes erd
+\end_inset
+
+status
+\begin_inset Quotes erd
+\end_inset
+
+ : 0, 
+\begin_inset Quotes eld
+\end_inset
+
+isOn
+\begin_inset Quotes erd
+\end_inset
+
+: 
+\begin_inset Quotes eld
+\end_inset
+
+0
+\begin_inset Quotes erd
+\end_inset
+
+}（继电器关闭）
+\end_layout
+
+\begin_layout Standard
+说明：继电器的控制，有较高的要求，需要保证通信质量，确保信息能发送到树莓派上。参数port代表Arduino上的引脚编号，参数isOn代表继电器的开关状态，“1
+”表示继电器打开，
+\begin_inset Quotes erd
+\end_inset
+
+0
+\begin_inset Quotes erd
+\end_inset
+
+表示继电器关闭。
+\end_layout
+
+\begin_layout Subsection
+继电器开关状态接口
+\end_layout
+
+\begin_layout Standard
+发布者（Publisher）：树莓派+Arduino
+\end_layout
+
+\begin_layout Standard
+订阅者（Subscriber）：Android端
+\end_layout
+
+\begin_layout Standard
+标题（Title）：switch_status
+\end_layout
+
+\begin_layout Standard
+服务质量（Qos）：2
+\end_layout
+
+\begin_layout Standard
+\align block
+消息内容（Message）：
+\end_layout
+
+\begin_layout Enumerate
+\align block
+成功：{
+\begin_inset Quotes erd
+\end_inset
+
+status
+\begin_inset Quotes erd
+\end_inset
+
+ : 0, 
+\begin_inset Quotes eld
+\end_inset
+
+port
+\begin_inset Quotes erd
+\end_inset
+
+: 15, 
+\begin_inset Quotes eld
+\end_inset
+
+status_isOn
+\begin_inset Quotes erd
+\end_inset
+
+: 
+\begin_inset Quotes eld
+\end_inset
+
+1
+\begin_inset Quotes erd
+\end_inset
+
+}（继电器打开）或者{
+\begin_inset Quotes erd
+\end_inset
+
+status
+\begin_inset Quotes erd
+\end_inset
+
+ : 0, 
+\begin_inset Quotes eld
+\end_inset
+
+status_isOn
+\begin_inset Quotes erd
+\end_inset
+
+: 
+\begin_inset Quotes eld
+\end_inset
+
+0
+\begin_inset Quotes erd
+\end_inset
+
+}（继电器关闭）
+\end_layout
+
+\begin_layout Enumerate
+\align block
+失败：{
+\begin_inset Quotes erd
+\end_inset
+
+status
+\begin_inset Quotes erd
+\end_inset
+
+ : 1, 
+\begin_inset Quotes eld
+\end_inset
+
+port
+\begin_inset Quotes erd
+\end_inset
+
+: 15, 
+\begin_inset Quotes eld
+\end_inset
+
+status_isOn
+\begin_inset Quotes erd
+\end_inset
+
+: 
+\begin_inset Quotes eld
+\end_inset
+
+null
+\begin_inset Quotes erd
+\end_inset
+
+}
+\end_layout
+
+\begin_layout Standard
+说明：继电器状态的传输，也是需要较高的通信质量，便于Android终端上继电器信息的更新。参数port代表Arduino上的引脚编号，参数status_isOn
+代表继电器的开关状态，“1”表示继电器打开，
+\begin_inset Quotes erd
+\end_inset
+
+0
+\begin_inset Quotes erd
+\end_inset
+
+表示继电器关闭。
+\end_layout
+
+\begin_layout Subsection
+温度低于24摄氏度时和温度高于30摄氏度时的通知信息
+\end_layout
+
+\begin_layout Standard
+发布者（Publisher）：树莓派+Arduino
+\end_layout
+
+\begin_layout Standard
+订阅者（Subscriber）：Android端
+\end_layout
+
+\begin_layout Standard
+标题（Title）：temp_notification
+\end_layout
+
+\begin_layout Standard
+服务质量（Qos）：1
+\end_layout
+
+\begin_layout Standard
+\align block
+消息内容（Message）：
+\end_layout
+
+\begin_layout Standard
+\align block
+{
+\begin_inset Quotes erd
+\end_inset
+
+status
+\begin_inset Quotes erd
+\end_inset
+
+ : 100, 
+\begin_inset Quotes eld
+\end_inset
+
+msg_temp
+\begin_inset Quotes erd
+\end_inset
+
+: 
+\begin_inset Quotes eld
+\end_inset
+
+温度低于24摄氏度，是否关闭空调?
+\begin_inset Quotes erd
+\end_inset
+
+}或者{
+\begin_inset Quotes erd
+\end_inset
+
+status
+\begin_inset Quotes erd
+\end_inset
+
+ : 101, 
+\begin_inset Quotes eld
+\end_inset
+
+msg_temp
+\begin_inset Quotes erd
+\end_inset
+
+: 
+\begin_inset Quotes eld
+\end_inset
+
+温度高于30摄氏度，是否打开空调?
+\begin_inset Quotes erd
+\end_inset
+
+}
+\end_layout
+
+\begin_layout Standard
+说明：继电器状态的传输，也是需要较高的通信质量，便于Android终端上继电器信息的更新。参数status代表不同情况下的状态码，参数msg_temp代表需要发
+送到Android端的通知信息。
+\end_layout
+
+\begin_layout Chapter
+系统实现
+\end_layout
+
+\begin_layout Section
+硬件电路搭建
+\end_layout
+
+\begin_layout Standard
+这里采用fritzing-0.9.2b，可以完美展示通过面包板搭建的电路情况，fritzing提供了面包板的模型以及各项常用的元器件，可以很方便的提供接线的直观展示
+。
+\end_layout
+
+\begin_layout Standard
+在Debian或者Ubuntu下，可以直接下载并解压，通过命令行切换到所在目录后启动：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+lsy@debian:~/IOT_Project/Arduino/ide/fritzing-0.9.2b$ ./Fritzing  
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+启动后，根据下图所示来切换到面包板的操作页面，如图
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:面包板电路搭建页面"
+
+\end_inset
+
+所示。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figure/面包板搭建页面.png
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:面包板电路搭建页面"
+
+\end_inset
+
+面包板电路搭建页面
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+工具准备完毕，开始电路搭建的内容。
+\end_layout
+
+\begin_layout Subsection
+温度采集功能的电路搭建
+\end_layout
+
+\begin_layout Standard
+首先选取所需的硬件设备以及传感器，上图中右侧Parts部分标注的是用来选择元器件以及单片机的地方，从这里选择当前需要的。下面开始搭建温度数据采集电路。
+\end_layout
+
+\begin_layout Standard
+第一步需要添加所需的元件库，从github上这个地址：https://github.com/adafruit/Fritzing-Library下载压缩包文件并解压
+。解压后，在Fritzing软件中，添加这个库，通过File->Open...弹出文件选择框，切换到解压后的文件目录，打开AdaFruit.fzbz文件，即可将这个元件
+库添加到软件中。操作如图
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:添加库操作"
+
+\end_inset
+
+所示。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figure/添加库操作_1.jpg
+	width 70col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:添加库操作"
+
+\end_inset
+
+添加库操作
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+第二步是，添加相应的元件。在温度采集这个功能模块中，需要表
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:温度采集功能需要的元器件列表"
+
+\end_inset
+
+中的元器件。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+元器件
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+数量
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Arduino UNO R3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+DHT11温湿度传感器
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+面包板
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.7kΩ电阻
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+杜邦线（公对公）
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:温度采集功能需要的元器件列表"
+
+\end_inset
+
+温度采集功能需要的元器件列表
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+其中杜邦线在画图的时候不需要，实际连接的过程中需要使用。下面图
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:温度采集模块元件选择后拖动到工作区的示意图"
+
+\end_inset
+
+是添加过元件后的示意图。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figure/温度采集功能_第一步.png
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:温度采集模块元件选择后拖动到工作区的示意图"
+
+\end_inset
+
+温度采集模块元件选择后拖动到工作区的示意图
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+第四步，在元件摆放完毕后，开始接线，如图
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:温度采集模块最终连线示意图"
+
+\end_inset
+
+所示。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figure/温度采集功能_最终连线.png
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:温度采集模块最终连线示意图"
+
+\end_inset
+
+温度采集模块最终连线的示意图
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+这样温度数据采集电路就设计完毕了。解释一下，这里图5-4中使用的是4线制的DHT11传感器，其中从左向右数第三个引脚需要悬空，而实际操作中，使用的是3线制的DH
+T11，没有悬空的引脚。还有需要解释的是，接4.7kΩ的上拉电阻，为的是在没有数据的时候保持高电位，减少读数的误差。下面图
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "温度采集模块最终原理图"
+
+\end_inset
+
+是温度采集模块原理图的示意。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figure/温度采集模块_原理图.png
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "温度采集模块最终原理图"
+
+\end_inset
+
+温度采集模块原理图
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+继电器模块的电路搭建
+\end_layout
+
+\begin_layout Standard
+前面已经导入所需的元件库了，所以就不用再导入元件库了，还有就是元件库中只有两路的继电器，没有四路继电器模块，这里先用两路的继电器来替代。
+\end_layout
+
+\begin_layout Standard
+第二步是，添加需要的元件。在继电器功能模块中，需要表
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:继电器功能模块所需元器件"
+
+\end_inset
+
+中的元器件。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+元器件
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+数量
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Arduino UNO R3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+两路继电器模块
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+250Ω电阻
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+发光二极管红色
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+杜邦线（公对公）
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:继电器功能模块所需元器件"
+
+\end_inset
+
+继电器功能模块所需元器件
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+然后就是将需要的器件放到工作区中，如图
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:继电器功能模块元器件摆放图"
+
+\end_inset
+
+所示。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figure/继电器模块_第一步.png
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:继电器功能模块元器件摆放图"
+
+\end_inset
+
+继电器功能模块元器件摆放图
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+然后下边进行接线，接线后如图
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:继电器功能模块接线图"
+
+\end_inset
+
+所示。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figure/继电器功能模块_接线图.png
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:继电器功能模块接线图"
+
+\end_inset
+
+继电器功能模块接线图
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+下面图
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "继电器功能模块_原理图"
+
+\end_inset
+
+是通过接线图生成的原理图。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figure/继电器功能模块_原理图.png
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "继电器功能模块_原理图"
+
+\end_inset
+
+继电器功能模块原理图
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+整体接线图和整体原理图
+\end_layout
+
+\begin_layout Standard
+最终接线后的电路包含两个继电器控制的电路，接入另一个继电器的方法和上一个是一致的，所以整体接线图如图
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "整体接线图"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figure/最终接线图.png
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "整体接线图"
+
+\end_inset
+
+整体接线图
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+整体电路原理图如图
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "整体电路图_原理图"
+
+\end_inset
+
+：
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figure/最终原理图.png
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "整体电路图_原理图"
+
+\end_inset
+
+整体电路原理图
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+代码编写思路
+\end_layout
+
+\begin_layout Standard
+硬件方面的电路搭建在上一节已经完成，剩下的重中之重就是编写代码了。出于需求难易的考虑，先来编写服务端的代码，因为服务端代码功能是实现消息转发，难度比较低，而且可
+以使用成熟的第三方开源框架，这样就不用去为实现整个MQTT协议而考虑了，更多的将精力放到业务逻辑的开发上；紧接着来实现树莓派端的代码编写，需要实现的是面向硬件的
+操作以及消息的发送和接收；最后来实现Android端的代码，主要实现UI界面的编写以及消息的发送和接收这两个功能。所有的代码编写都需要遵循环境搭建和代码编写这样
+两个环节，在下面每一节的编写过程中，都遵循这两个环节来进行。
+\end_layout
+
+\begin_layout Section
+服务端代码编写
+\end_layout
+
+\begin_layout Standard
+服务端的主要功能就是进行消息转发。如果实现整个的MQTT协议，工作量很大，而且业务逻辑复杂，超出不少工作量。这里借助第三方的开源框架——hbmqtt来进行开发，
+将更多精力放到接口协议的开发上。
+\end_layout
+
+\begin_layout Subsection
+环境搭建
+\end_layout
+
+\begin_layout Standard
+当你购买了阿里云服务器时，只有一个root用户。直接对root用户操作不是不可以，但是这样做危险性很大，万一操作不当出现了问题，很难补救。这样先来创建一个用户，
+并赋予他root权限。然后在这个用户下，搭建python开发环境。这个就是搭建开发环境的简要步骤。说明一下，所有终端命令的操作步骤中，#后面空格后跟随的中文内容
+均为注释。
+\end_layout
+
+\begin_layout Subsubsection
+创建新用户并赋予root权限
+\end_layout
+
+\begin_layout Standard
+前面已经说明，这里所有操作均在Debian8环境下进行。
+\end_layout
+
+\begin_layout Standard
+首先打开终端，通过ssh命令连接到服务器，命令如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+abcd@1234:~$ ssh root@114.225.92.215 # root是用户名，@符号后边是服务器外网ip，需要替换成你自己的外网ip
+\end_layout
+
+\begin_layout Plain Layout
+
+The authenticity of host '192.168.0.106 (192.168.0.106)' can't be established.
+\end_layout
+
+\begin_layout Plain Layout
+
+ECDSA key fingerprint is b4:0c:a9:dd:b2:bd:e9:57:fd:9d:96:10:90:59:48:b2.
+\end_layout
+
+\begin_layout Plain Layout
+
+Are you sure you want to continue connecting (yes/no)? yes # 第一次登陆需要创建ssh-key
+\end_layout
+
+\begin_layout Plain Layout
+
+root@114.225.92.215's password:  # 从这里输入密码
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+The programs included with the Debian GNU/Linux system are free software;
+\end_layout
+
+\begin_layout Plain Layout
+
+the exact distribution terms for each program are described in the
+\end_layout
+
+\begin_layout Plain Layout
+
+individual files in /usr/share/doc/*/copyright.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+\end_layout
+
+\begin_layout Plain Layout
+
+permitted by applicable law.
+\end_layout
+
+\begin_layout Plain Layout
+
+Last login: Sun Apr 24 14:01:16 2016
+\end_layout
+
+\begin_layout Plain Layout
+
+root@iZ280pdfadf:~#                     # 由于是root用户登陆，所以登陆后显示#，普通用户显示$ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+经过上面的代码演示，当前已经以root用户的身份登陆远程服务器了。
+\end_layout
+
+\begin_layout Standard
+下面来创建用户，使用useradd命令，演示如下:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+root@iZ280pdfadf:~# adduser iot_test # iot_test是所创建用户的用户名
+\end_layout
+
+\begin_layout Plain Layout
+
+Adding user `iot_test' ...
+\end_layout
+
+\begin_layout Plain Layout
+
+Adding new group `iot_test' (1001) ...
+\end_layout
+
+\begin_layout Plain Layout
+
+Adding new user `iot_test' (1001) with group `iot_test' ...
+\end_layout
+
+\begin_layout Plain Layout
+
+Creating home directory `/home/iot_test' ...
+\end_layout
+
+\begin_layout Plain Layout
+
+Copying files from `/etc/skel' ...
+\end_layout
+
+\begin_layout Plain Layout
+
+Enter new UNIX password:      # 在这里输入密码并记住该用户的密码
+\end_layout
+
+\begin_layout Plain Layout
+
+Retype new UNIX password:     # 密码重复输入
+\end_layout
+
+\begin_layout Plain Layout
+
+passwd: password updated successfully
+\end_layout
+
+\begin_layout Plain Layout
+
+Changing the user information for iot_test
+\end_layout
+
+\begin_layout Plain Layout
+
+Enter the new value, or press ENTER for the default　　　#　确认个人信息，这里均使用默认值(default)
+\end_layout
+
+\begin_layout Plain Layout
+
+	Full Name []: 
+\end_layout
+
+\begin_layout Plain Layout
+
+	Room Number []: 
+\end_layout
+
+\begin_layout Plain Layout
+
+	Work Phone []: 
+\end_layout
+
+\begin_layout Plain Layout
+
+	Home Phone []: 
+\end_layout
+
+\begin_layout Plain Layout
+
+	Other []: 
+\end_layout
+
+\begin_layout Plain Layout
+
+Is the information correct? [Y/n] Y  # 信息确认
+\end_layout
+
+\begin_layout Plain Layout
+
+root@iZ280pdfadf:                    # 到此用户创建完毕
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+依据以上步骤，用户就创建完毕了，下面需要为创建的用户添加root权限，有两种方式：
+\end_layout
+
+\begin_layout Standard
+方法一：修改 /etc/sudoers 文件，找到下面一行，把前面的注释（#）去掉
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+## Allows people in group wheel to run all commands
+\end_layout
+
+\begin_layout Plain Layout
+
+%wheel ALL=(ALL) ALL
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+然后修改用户，使其属于root组（wheel），命令如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#usermod -g root iot_test
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+修改完毕，现在可以用iot_test帐号登录，然后用命令 su – ，即可获得root权限进行操作。
+\end_layout
+
+\begin_layout Standard
+方法二：修改 /etc/sudoers 文件，找到下面一行，在root下面添加一行，如下所示：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+## Allow root to run any commands anywhere
+\end_layout
+
+\begin_layout Plain Layout
+
+root ALL=(ALL) ALL
+\end_layout
+
+\begin_layout Plain Layout
+
+iot_testALL=(ALL) ALL
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+修改完毕，现在可以用iot_test帐号登录，然后用命令 sudo – ，即可获得root权限进行操作。
+\end_layout
+
+\begin_layout Standard
+方法三：修改 /etc/passwd 文件，找到如下行，把用户ID修改为 0 ，如下所示：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+iot_test:x:0:33:iot_test:/data/webroot:/bin/bash
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+这里我采用的是方法二进行操作，演示如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+root@iZ280pdfadf:~# vim /etc/sudoers
+\end_layout
+
+\begin_layout Plain Layout
+
+# 下面是sudoers文件中的全部内容
+\end_layout
+
+\begin_layout Plain Layout
+
+#
+\end_layout
+
+\begin_layout Plain Layout
+
+# This file MUST be edited with the 'visudo' command as root.
+\end_layout
+
+\begin_layout Plain Layout
+
+#
+\end_layout
+
+\begin_layout Plain Layout
+
+# Please consider adding local content in /etc/sudoers.d/ instead of
+\end_layout
+
+\begin_layout Plain Layout
+
+# directly modifying this file.
+\end_layout
+
+\begin_layout Plain Layout
+
+#
+\end_layout
+
+\begin_layout Plain Layout
+
+# See the man page for details on how to write a sudoers file.
+\end_layout
+
+\begin_layout Plain Layout
+
+#
+\end_layout
+
+\begin_layout Plain Layout
+
+Defaults        env_reset
+\end_layout
+
+\begin_layout Plain Layout
+
+Defaults        mail_badpass
+\end_layout
+
+\begin_layout Plain Layout
+
+Defaults        secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/
+sbin:/bin"
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# Host alias specification
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# User alias specification
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# Cmnd alias specification
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# User privilege specification
+\end_layout
+
+\begin_layout Plain Layout
+
+root    ALL=(ALL:ALL) ALL
+\end_layout
+
+\begin_layout Plain Layout
+
+iot_test      ALL=(ALL:ALL) ALL　　　　# 要从这个位置添加
+\end_layout
+
+\begin_layout Plain Layout
+
+# Members of the admin group may gain root privileges
+\end_layout
+
+\begin_layout Plain Layout
+
+%admin ALL=(ALL) ALL
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# Allow members of group sudo to execute any command
+\end_layout
+
+\begin_layout Plain Layout
+
+%sudo   ALL=(ALL:ALL) ALL
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# See sudoers(5) for more information on "#include" directives:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#includedir /etc/sudoers.d
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+:w !sudo tee %    # 先敲Esc，然后按照前面所示键入这条命令。这条命令是保存文件操作的命令
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+W12: Warning: File "/etc/sudoers" has changed and the buffer was changed
+ in Vim as well
+\end_layout
+
+\begin_layout Plain Layout
+
+See ":help W12" for more info.
+\end_layout
+
+\begin_layout Plain Layout
+
+[O]K, (L)oad File: O    # 输入O选择保存
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Press ENTER or type command to continue　# 再次回车确认
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+:q!      # 输入这条命令退出编辑
+\end_layout
+
+\begin_layout Plain Layout
+
+root@iZ280pdfadf:~# 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+这样就为刚刚创建的用户添加了root权限，这时候需要退出root用户的登陆，使用iot_test用户来登陆服务器，操作如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+root@iZ280pdfadf:~# exit　　　　　# 通过exit命令退出当前登陆
+\end_layout
+
+\begin_layout Plain Layout
+
+logout
+\end_layout
+
+\begin_layout Plain Layout
+
+Connection to 114.225.92.215 closed.
+\end_layout
+
+\begin_layout Plain Layout
+
+abcd@1234:~$  ssh iot_test@114.225.92.215　# 以iot_test用户的身份登陆
+\end_layout
+
+\begin_layout Plain Layout
+
+iot_test@114.225.92.215's password: 
+\end_layout
+
+\begin_layout Plain Layout
+
+Welcome to Ubuntu 14.04.2 LTS (GNU/Linux 3.13.0-32-generic x86_64)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ * Documentation:  https://help.ubuntu.com/
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+The programs included with the Ubuntu system are free software;
+\end_layout
+
+\begin_layout Plain Layout
+
+the exact distribution terms for each program are described in the
+\end_layout
+
+\begin_layout Plain Layout
+
+individual files in /usr/share/doc/*/copyright.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+\end_layout
+
+\begin_layout Plain Layout
+
+applicable law.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Welcome to aliyun Elastic Compute Service!
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+iot_test@iZ280pdfadf:~$ 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+到此为止，添加用户以及为所添加的用户添加root权限已经顺利完成。
+\end_layout
+
+\begin_layout Subsubsection
+搭建python开发环境
+\end_layout
+
+\begin_layout Standard
+首先来检测一下python环境，直接在命令行中输入python或者python3，看看控制台输出如何，代码如下:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+iot_test@iZ280pdfadf:~$ python
+\end_layout
+
+\begin_layout Plain Layout
+
+Python 2.7.6 (default, Jun 22 2015, 17:58:13) 
+\end_layout
+
+\begin_layout Plain Layout
+
+[GCC 4.8.2] on linux2
+\end_layout
+
+\begin_layout Plain Layout
+
+Type "help", "copyright", "credits" or "license" for more information.
+\end_layout
+
+\begin_layout Plain Layout
+
+>>> 									# 退出的时候快捷键为ctrl+d
+\end_layout
+
+\begin_layout Plain Layout
+
+iot_test@iZ280pdfadf:~$ python3
+\end_layout
+
+\begin_layout Plain Layout
+
+Python 3.4.3 (default, Oct 14 2015, 20:28:29) 
+\end_layout
+
+\begin_layout Plain Layout
+
+[GCC 4.8.4] on linux
+\end_layout
+
+\begin_layout Plain Layout
+
+Type "help", "copyright", "credits" or "license" for more information.
+\end_layout
+
+\begin_layout Plain Layout
+
+>>> 
+\end_layout
+
+\begin_layout Plain Layout
+
+iot_test@iZ280pdfadf:~$ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+这样就验证了python环境的完整性，python2.7和python３.4版本均存在，不需要安装。
+\end_layout
+
+\begin_layout Standard
+那么在开发的时候会有两种选择，一种是直接在当前环境下操作，这样比较直接，但是可能对整个环境中其他程序的运行造成影响，因为你是对全局的python环境进行操作；还
+有一种方式是，通过建立虚拟环境，让python程序运行在虚拟环境中，这样就会将虚拟环境与全局环境进行隔离，方便管理。所以采用虚拟环境的方式来运行python程序
+。那么首先要安装搭建虚拟环境需要的程序，如下面代码所示：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+iot_test@iZ280pdfadf:~$ sudo apt-get update　　# 安装之前习惯性的先update一下
+\end_layout
+
+\begin_layout Plain Layout
+
+iot_test@iZ280pdfadf:~$ sudo apt-get python-pip python-dev # 安装python环境中需要的组件
+\end_layout
+
+\begin_layout Plain Layout
+
+iot_test@iZ280pdfadf:~$ sudo pip install virtualenv # 安装虚拟环境创建的工具
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+所有程序安装完毕后，开始创建python虚拟环境，创建过程如下:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+iot_test@iZ280pdfadf:~$ mkdir IOT   # 创建文件夹
+\end_layout
+
+\begin_layout Plain Layout
+
+iot_test@iZ280pdfadf:~$ ls 　　　　# 列举文件夹位置
+\end_layout
+
+\begin_layout Plain Layout
+
+IOT
+\end_layout
+
+\begin_layout Plain Layout
+
+iot_test@iZ280pdfadf:~$ cd IOT/   # 切换到IOT目录下
+\end_layout
+
+\begin_layout Plain Layout
+
+iot_test@iZ280pdfadf:~/IOT$ virtualenv -p python3 venv  # 创建虚拟环境，-p指定python的版本，使
+用python3
+\end_layout
+
+\begin_layout Plain Layout
+
+Running virtualenv with interpreter /usr/bin/python3
+\end_layout
+
+\begin_layout Plain Layout
+
+Using base prefix '/usr'
+\end_layout
+
+\begin_layout Plain Layout
+
+New python executable in venv/bin/python3
+\end_layout
+
+\begin_layout Plain Layout
+
+Also creating executable in venv/bin/python
+\end_layout
+
+\begin_layout Plain Layout
+
+Installing setuptools, pip, wheel...done.
+\end_layout
+
+\begin_layout Plain Layout
+
+iot_test@iZ280pdfadf:~$
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+这样虚拟环境就创建好了，下一步就是让虚拟环境生效。过程如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+iot_test@iZ280pdfadf:~/IOT$ source venv/bin/activate　#　使虚拟环境生效的命令
+\end_layout
+
+\begin_layout Plain Layout
+
+(venv)iot_test@iZ280pdfadf:~/IOT$ deactivate # 退出虚拟环境的命令
+\end_layout
+
+\begin_layout Plain Layout
+
+iot_test@iZ280pdfadf:~/IOT$  
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+很明显，当虚拟环境生效时，iot_test前面多出了“(venv)”这些字符，表明当前处于虚拟环境中；需要退出虚拟环境时，可以在任何时刻执行deactivate
+命令，即可退出。当虚拟环境生效后，在这个虚拟环境中进行开发，同外部的python环境进行隔离，方便管理。
+\end_layout
+
+\begin_layout Standard
+那么在最终开发之前，还需要安装hbmqtt组件，一条命令即可:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+(venv)iot_test@iZ280pdfadf:~/IOT$ pip install hbmqtt
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+在虚拟环境下安装组件，不需要root权限，直接安装即可。这样环境搭建就完成了。
+\end_layout
+
+\begin_layout Subsection
+代码编写
+\end_layout
+
+\begin_layout Standard
+代码编写的时候分为三个部分来处理，第一个是配置文件，配置文件需要使用YAML语言来进行配置，简单易懂；第二个就是真正的源代码了，包含日志处理、配置文件导入、服务
+器启动三个功能函数；最后是启动文件，需要配置开机启动，而且在后台自动运行。设置日志处理的原因就是防止程序突然停止，通过日志找到程序崩溃的根源。所有代码使用vim
+编辑器进行编写。源代码如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+# YAML配置文件——config.yaml
+\end_layout
+
+\begin_layout Plain Layout
+
+listeners:
+\end_layout
+
+\begin_layout Plain Layout
+
+    default:
+\end_layout
+
+\begin_layout Plain Layout
+
+        max-connections: 5000　# 最大连接数
+\end_layout
+
+\begin_layout Plain Layout
+
+        type: tcp　　　　　　　　# TCP方式
+\end_layout
+
+\begin_layout Plain Layout
+
+        bind: 0.0.0.0:1883     # 绑定端口，设置允许外网访问
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+配置文件主要就是设定了三项内容，下面是源文件的代码：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+# 源文件——serins.py
+\end_layout
+
+\begin_layout Plain Layout
+
+#!/usr/bin/env python
+\end_layout
+
+\begin_layout Plain Layout
+
+# encoding: utf-8
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+import logging
+\end_layout
+
+\begin_layout Plain Layout
+
+import asyncio
+\end_layout
+
+\begin_layout Plain Layout
+
+import os
+\end_layout
+
+\begin_layout Plain Layout
+
+import yaml
+\end_layout
+
+\begin_layout Plain Layout
+
+from hbmqtt.broker import Broker
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# 日志文件配置
+\end_layout
+
+\begin_layout Plain Layout
+
+def init_log():
+\end_layout
+
+\begin_layout Plain Layout
+
+    console_file = logging.FileHandler('application.log')
+\end_layout
+
+\begin_layout Plain Layout
+
+	# 设置日志级别
+\end_layout
+
+\begin_layout Plain Layout
+
+    console_file.setLevel(logging.DEBUG)
+\end_layout
+
+\begin_layout Plain Layout
+
+	# 设置日志格式
+\end_layout
+
+\begin_layout Plain Layout
+
+    file_formatter = logging.Formatter('[%(asctime)s] :: %(levelname)s ::
+ %(name)s :: %(message)s')
+\end_layout
+
+\begin_layout Plain Layout
+
+    console_file.setFormatter(file_formatter)
+\end_layout
+
+\begin_layout Plain Layout
+
+    logging.getLogger('').addHandler(console_file)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# 导入配置文件
+\end_layout
+
+\begin_layout Plain Layout
+
+stream = open('/home/iot_test/IOT/config.yaml','r')
+\end_layout
+
+\begin_layout Plain Layout
+
+yaml_conf = yaml.load(stream)
+\end_layout
+
+\begin_layout Plain Layout
+
+broker = Broker(yaml_conf)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# 启动hbmqtt服务器
+\end_layout
+
+\begin_layout Plain Layout
+
+@asyncio.coroutine
+\end_layout
+
+\begin_layout Plain Layout
+
+def test_coro():
+\end_layout
+
+\begin_layout Plain Layout
+
+    yield from broker.start()
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+if __name__ == '__main__':
+\end_layout
+
+\begin_layout Plain Layout
+
+	# 这里是控制台显示日志信息的配置
+\end_layout
+
+\begin_layout Plain Layout
+
+    formatter = "[%(asctime)s] :: %(levelname)s :: %(name)s :: %(message)s"
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+    logging.basicConfig(level=logging.INFO, format=formatter)
+\end_layout
+
+\begin_layout Plain Layout
+
+    init_log()
+\end_layout
+
+\begin_layout Plain Layout
+
+	# 确保服务器启动完成
+\end_layout
+
+\begin_layout Plain Layout
+
+    asyncio.get_event_loop().run_until_complete(test_coro())    
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+其实到这里，这个服务器程序可以正常运行了，可以在命令行当中这样执行：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+(venv)iot_test@iZ280pdfadf:~/IOT$ python serins.py  
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+但是这样执行后，整个终端只是在运行这一个程序，每一次服务器启动都得去像上面那样手动执行这条命令，如果需要在这个终端中再去做其他工作，必须终止程序运行才行。所以下
+面需要配置开机启动。
+\end_layout
+
+\begin_layout Standard
+首先编写开机启动的脚本文件：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#!/bin/bash
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+source /home/iot_test/IOT/venv/bin/activate # 启动虚拟环境
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+python /home/iot_test/IOT/serins.py & # 脚本执行
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+需要先启动虚拟环境再去执行脚本启动的命令，这样保证确实是在自己创建的虚拟环境中运行。
+\end_layout
+
+\begin_layout Standard
+最后需要把这个文件添加开机启动，过程如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+(venv)iot_test@iZ280pdfadf:~/IOT$ sudo chmod 755 start.sh # 修改文件权限
+\end_layout
+
+\begin_layout Plain Layout
+
+(venv)iot_test@iZ280pdfadf:~/IOT$ sudo cp start.sh /etc/init.d/　# 将文件粘贴到etc/init.d/
+目录下
+\end_layout
+
+\begin_layout Plain Layout
+
+(venv)iot_test@iZ280pdfadf:~$ cd /etc/init.d
+\end_layout
+
+\begin_layout Plain Layout
+
+(venv)iot_test@iZ280pdfadf:/etc/init.d$ sudo update-rc.d start.sh defaults
+ 95 # 设置启动顺序
+\end_layout
+
+\begin_layout Plain Layout
+
+update-rc.d: warning: /etc/init.d/start.sh missing LSB information
+\end_layout
+
+\begin_layout Plain Layout
+
+update-rc.d: see <http://wiki.debian.org/LSBInitScripts>
+\end_layout
+
+\begin_layout Plain Layout
+
+ Adding system startup for /etc/init.d/start.sh ...
+\end_layout
+
+\begin_layout Plain Layout
+
+   /etc/rc0.d/K95start.sh -> ../init.d/start.sh
+\end_layout
+
+\begin_layout Plain Layout
+
+   /etc/rc1.d/K95start.sh -> ../init.d/start.sh
+\end_layout
+
+\begin_layout Plain Layout
+
+   /etc/rc6.d/K95start.sh -> ../init.d/start.sh
+\end_layout
+
+\begin_layout Plain Layout
+
+   /etc/rc2.d/S95start.sh -> ../init.d/start.sh
+\end_layout
+
+\begin_layout Plain Layout
+
+   /etc/rc3.d/S95start.sh -> ../init.d/start.sh
+\end_layout
+
+\begin_layout Plain Layout
+
+   /etc/rc4.d/S95start.sh -> ../init.d/start.sh
+\end_layout
+
+\begin_layout Plain Layout
+
+   /etc/rc5.d/S95start.sh -> ../init.d/start.sh
+\end_layout
+
+\begin_layout Plain Layout
+
+iot_test@iZ280p9hiiuZ:/etc/init.d$ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+添加完成后，可以通过阿里云的控制台或者直接在终端中使用sudo reboot命令来重启服务器。重启完毕后，重新登陆iot_test用户，再使用下面的命令来查看：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+lsyAndroid@iZ280p9hiiuZ:/etc/init.d$ ps -ef | grep python
+\end_layout
+
+\begin_layout Plain Layout
+
+# 下面这一行显示的就是自己编写的脚本已经在后台运行了
+\end_layout
+
+\begin_layout Plain Layout
+
+root       995     1  0 Apr25 ?        00:00:00 python /home/iot_test/IOT/serins.
+py
+\end_layout
+
+\begin_layout Plain Layout
+
+lsyAndr+  3998  3747  0 07:59 pts/0    00:00:00 grep --color=auto python
+\end_layout
+
+\begin_layout Plain Layout
+
+lsyAndroid@iZ280p9hiiuZ:/etc/init.d$ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+这样整个服务端的内容就全部完成了，此时服务端已经正常工作了。
+\end_layout
+
+\begin_layout Section
+树莓派端的代码编写
+\end_layout
+
+\begin_layout Standard
+在硬件电路搭建完毕的情况下，需要通过树莓派+Arduino的组合来对硬件电路实现控制。Arduino充当树莓派与硬件电路之间的接口板，树莓派作为与服务端对接的端
+口，也就是通过树莓派来实现消息的发送和接收。
+\end_layout
+
+\begin_layout Standard
+在这个部分中，同样分为环境搭建和代码编写两个部分。环境搭建包含树莓派的系统镜像制作、使用前的初步设置（主要是解决屏幕显示以及内存卡空间不足的问题）、相关软件的安
+装以及接口板的制作这四个方面的内容；代码编写分为硬件控制内容的编写和消息接口的实现这两个方面的内容。
+\end_layout
+
+\begin_layout Subsection
+环境搭建
+\end_layout
+
+\begin_layout Subsubsection
+树莓派系统镜像制作
+\end_layout
+
+\begin_layout Standard
+先从https://www.raspberrypi.org/downloads/raspbian/上 下载树莓派的镜像，选择图
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:下载镜像示意图"
+
+\end_inset
+
+所示的镜像文件，点击Download Zip下载。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figure/下载镜像截图.png
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:下载镜像示意图"
+
+\end_inset
+
+下载镜像示意图
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+下载完毕后将镜像写入到SD卡中，这里使用命令行来操作。
+\end_layout
+
+\begin_layout Standard
+首先来验证下压缩包没有被串改，命令如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+lsyAndroid@iZ280p9hiiuZ:~$ cd Downloads/
+\end_layout
+
+\begin_layout Plain Layout
+
+lsyAndroid@iZ280p9hiiuZ:~/Downloads$ sha1sum 2016-03-18-raspbian-jessie.zip
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+db41f2a8c6236c0ca9150fe4db2017c09e7871fb  2016-03-18-raspbian-jessie.zip
+\end_layout
+
+\begin_layout Plain Layout
+
+lsyAndroid@iZ280p9hiiuZ:~/Downloads$ 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+将计算出的sha1码，同官网给出的sha1码进行比对，也就是如图
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:签名文件对比图"
+
+\end_inset
+
+所示，如果比对结果不正确，需要重新下载。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figure/签名文件对比图.png
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:签名文件对比图"
+
+\end_inset
+
+签名文件对比图
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+然后解压文件，得到2016-03-18-raspbian-jessie.img镜像文件。下一步将准备的内存卡格式化，只有格式化之后，内存卡才能被系统所识别，这一步
+需要你自行操作。
+\end_layout
+
+\begin_layout Standard
+随后用两次df命令来确定内存卡的“代号”——所属的FileSystem，过程如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+lsyAndroid@iZ280p9hiiuZ:~/Downloads$ df -h　# 第一次使用df -h命令
+\end_layout
+
+\begin_layout Plain Layout
+
+Filesystem      Size  Used Avail Use% Mounted on
+\end_layout
+
+\begin_layout Plain Layout
+
+/dev/sdb5        54G   43G  7.4G  86% /
+\end_layout
+
+\begin_layout Plain Layout
+
+udev             10M     0   10M   0% /dev
+\end_layout
+
+\begin_layout Plain Layout
+
+tmpfs           1.5G  9.2M  1.5G   1% /run
+\end_layout
+
+\begin_layout Plain Layout
+
+tmpfs           3.7G   36M  3.6G   1% /dev/shm
+\end_layout
+
+\begin_layout Plain Layout
+
+tmpfs           5.0M  4.0K  5.0M   1% /run/lock
+\end_layout
+
+\begin_layout Plain Layout
+
+tmpfs           3.7G     0  3.7G   0% /sys/fs/cgroup
+\end_layout
+
+\begin_layout Plain Layout
+
+tmpfs           742M  8.0K  742M   1% /run/user/120
+\end_layout
+
+\begin_layout Plain Layout
+
+tmpfs           742M   28K  742M   1% /run/user/1000
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# 这时通过读卡器将内存卡插到电脑上
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+lsyAndroid@iZ280p9hiiuZ:~/Downloads$ df -h　# 第二次使用df -h命令
+\end_layout
+
+\begin_layout Plain Layout
+
+Filesystem      Size  Used Avail Use% Mounted on
+\end_layout
+
+\begin_layout Plain Layout
+
+/dev/sdb5        54G   43G  7.4G  86% /
+\end_layout
+
+\begin_layout Plain Layout
+
+udev             10M     0   10M   0% /dev
+\end_layout
+
+\begin_layout Plain Layout
+
+tmpfs           1.5G  9.2M  1.5G   1% /run
+\end_layout
+
+\begin_layout Plain Layout
+
+tmpfs           3.7G   36M  3.6G   1% /dev/shm
+\end_layout
+
+\begin_layout Plain Layout
+
+tmpfs           5.0M  4.0K  5.0M   1% /run/lock
+\end_layout
+
+\begin_layout Plain Layout
+
+tmpfs           3.7G     0  3.7G   0% /sys/fs/cgroup
+\end_layout
+
+\begin_layout Plain Layout
+
+tmpfs           742M  8.0K  742M   1% /run/user/120
+\end_layout
+
+\begin_layout Plain Layout
+
+tmpfs           742M   28K  742M   1% /run/user/1000
+\end_layout
+
+\begin_layout Plain Layout
+
+/dev/sdc1        15G  8.0K   15G   1% /media/iZ280p9hiiuZ/my # 制作系统的内存卡
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+下一步就是需要卸载设备，操作如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+lsyAndroid@iZ280p9hiiuZ:~/Downloads$ umount /dev/sdc1 
+\end_layout
+
+\begin_layout Plain Layout
+
+lsyAndroid@iZ280p9hiiuZ:~/Downloads$
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+卸载完成后，使用dd命令将镜像文件写入到内存卡中，操作如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+lsyAndroid@iZ280p9hiiuZ:~/Downloads$ sudo dd bs=4M if=2016-03-18-raspbian-jessie.
+img of=/dev/sdc1 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+这里需要解释一下命令中的参数，bs代表一次写入多大的块，是blocksize的缩写，4M一般都没问题，如果不行，试试改成1M，if参数为下载的镜像的路径（应该是
+input file缩写），of后参数为设备地址（应该是output file的缩写，linux上一切都是文件）。
+\end_layout
+
+\begin_layout Standard
+这里必须强调的是，千万不要写错这里的参数，否这你可能丢失硬盘所有数据。dd命令的破坏力很强，操作不当可能会删除硬盘上的所有数据，所以操作起来一定要慎重！
+\end_layout
+
+\begin_layout Standard
+这样执行命令即可，会出现什么都不显示的现象，这是因为dd命令没有进度的提示，这样等待几分钟即可，当镜像完全写入后，会出现下面的提示:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+961+1 records in
+\end_layout
+
+\begin_layout Plain Layout
+
+961+1 records out
+\end_layout
+
+\begin_layout Plain Layout
+
+4033871872 bytes (4.0 GB) copied, 512.258 s, 7.9 MB/s
+\end_layout
+
+\begin_layout Plain Layout
+
+lsyAndroid@iZ280p9hiiuZ:~/Downloads$
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+这样镜像就制作完成了。
+\end_layout
+
+\begin_layout Subsubsection
+树莓派系统的基本设置
+\end_layout
+
+\begin_layout Standard
+把内存卡插到树莓派上，开机启动，屏幕上显示的内容与正常的显示完全是相反的，如图
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:树莓派官方屏幕显示内容倒置"
+
+\end_inset
+
+所示：
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figure/屏幕倒置图片.jpg
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:树莓派官方屏幕显示内容倒置"
+
+\end_inset
+
+树莓派官方屏幕显示内容倒置
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+如果需要翻转180度，需要修改config.txt文件，操作过程如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+pi@raspberrypi:~$ sudo nano /boot/config.txt # 树莓派刚刚安装没有vim编辑器，所以使用nano编辑器
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# 跳转到文档最后
+\end_layout
+
+\begin_layout Plain Layout
+
+# 添加下面的一句代码
+\end_layout
+
+\begin_layout Plain Layout
+
+lcd_rotate=2　# 记住“=”两边不要带空格，这一句的意思是将树莓派屏幕旋转180度
+\end_layout
+
+\begin_layout Plain Layout
+
+# 保存退出
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+上边这种方式实在树莓派上直接修改，也可以关机断电后将内存卡取出，在你的机器上按照同样的路径找到文件修改，修改完毕后再将内存卡插到树莓派上启动即可，这样开机后就正
+常了！
+\end_layout
+
+\begin_layout Standard
+然后是需要让树莓派使用整个内存卡空间。当你完成镜像制作的时候，内存卡还是有很大一部分空间没有使用，如果不去利用这部分空间，在后边安装完git和vim剩余空间将会
+很小，一个直观的感受就是在输入命令的时候，敲tab进行提示，就会出现下面的情况：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+pi@raspberrypi:/etc/vim $ cd /usr-bash: cannot create temp file for here-documen
+t: No space left on device
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+首先来看看目前的空间使用情况，使用下面的命令来展示：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+pi@raspberrypi:~ $ df -h
+\end_layout
+
+\begin_layout Plain Layout
+
+Filesystem      Size  Used Avail Use% Mounted on
+\end_layout
+
+\begin_layout Plain Layout
+
+/dev/root       3.6G  3.4G     0 100% /　　　　　　　　　　# 显示100%使用率，空间已满
+\end_layout
+
+\begin_layout Plain Layout
+
+devtmpfs        459M     0  459M   0% /dev
+\end_layout
+
+\begin_layout Plain Layout
+
+tmpfs           463M     0  463M   0% /dev/shm
+\end_layout
+
+\begin_layout Plain Layout
+
+tmpfs           463M  6.4M  457M   2% /run
+\end_layout
+
+\begin_layout Plain Layout
+
+tmpfs           5.0M  4.0K  5.0M   1% /run/lock
+\end_layout
+
+\begin_layout Plain Layout
+
+tmpfs           463M     0  463M   0% /sys/fs/cgroup
+\end_layout
+
+\begin_layout Plain Layout
+
+/dev/mmcblk0p1   60M   20M   41M  34% /boot
+\end_layout
+
+\begin_layout Plain Layout
+
+tmpfs            93M     0   93M   0% /run/user/1000
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+下面是解决这个问题的步骤，首先输入以下命令：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+pi@raspberrypi:~$ sudo raspi-config 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+输入命令后会出现如图
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:输入sudo-raspi-config后的界面"
+
+\end_inset
+
+所示的情况。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figure/使用内存卡全部空间_1.png
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:输入sudo-raspi-config后的界面"
+
+\end_inset
+
+输入sudo raspi-config后的界面
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+选择第一项并敲回车键会出现如图
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:扩展存储空间后的页面"
+
+\end_inset
+
+所示的情况。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figure/使用内存卡全部空间_2.png
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:扩展存储空间后的页面"
+
+\end_inset
+
+扩展存储空间后的页面
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+继续敲回车，会回到最开始输入命令后展示的页面，这时候通过方向左键或者方向右键选择finish并回车后，会出现重启的界面，如图
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:设置完成后的重启界面"
+
+\end_inset
+
+所示。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figure/使用内存卡全部空间_3.png
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:设置完成后的重启界面"
+
+\end_inset
+
+设置完成后的重启界面
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+这时候选择YES来重新启动，重启完毕后，再来执行df -h命令，如下所示：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+pi@raspberrypi:~ $ df -h
+\end_layout
+
+\begin_layout Plain Layout
+
+Filesystem      Size  Used Avail Use% Mounted on
+\end_layout
+
+\begin_layout Plain Layout
+
+/dev/root        15G  3.4G   11G  25% /　　　　　　　　　# 容量大大扩展
+\end_layout
+
+\begin_layout Plain Layout
+
+devtmpfs        459M     0  459M   0% /dev
+\end_layout
+
+\begin_layout Plain Layout
+
+tmpfs           463M     0  463M   0% /dev/shm
+\end_layout
+
+\begin_layout Plain Layout
+
+tmpfs           463M  6.4M  457M   2% /run
+\end_layout
+
+\begin_layout Plain Layout
+
+tmpfs           5.0M  4.0K  5.0M   1% /run/lock
+\end_layout
+
+\begin_layout Plain Layout
+
+tmpfs           463M     0  463M   0% /sys/fs/cgroup
+\end_layout
+
+\begin_layout Plain Layout
+
+/dev/mmcblk0p1   60M   20M   41M  34% /boot
+\end_layout
+
+\begin_layout Plain Layout
+
+tmpfs            93M     0   93M   0% /run/user/1000
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+这样内存卡的扩展操作也就完成了。
+\end_layout
+
+\begin_layout Standard
+最后是连接外网，由于使用了免驱wifi网卡，可以像正常的电脑那样连接无线网络，也可以通过命令行来进行设置，方法如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+pi@raspberrypi:~$ lsusb # 列举出usb设备
+\end_layout
+
+\begin_layout Plain Layout
+
+# 下面这个就是无线网卡的设备
+\end_layout
+
+\begin_layout Plain Layout
+
+Bus 001 Device 004:ID 0bda:8176 Realtek Semiconductor Corp.
+ RTL8188CUS 802.11n WLAN Adapter　
+\end_layout
+
+\begin_layout Plain Layout
+
+....
+ 下面还有很多设备
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+pi@raspberrypi:~$ ifconfig
+\end_layout
+
+\begin_layout Plain Layout
+
+wlan0     Link encap:Ethernet  HWaddr 00:16:3e:00:4f:15  
+\end_layout
+
+\begin_layout Plain Layout
+
+          inet addr:fdasffadfddsaf  # 关键在这一行，wlan0不显示ip地址，但是这个设备是存在的
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+pi@raspberrypi:~$ sudo nano /etc/network/interfaces 
+\end_layout
+
+\begin_layout Plain Layout
+
+# 修改文件内容如下
+\end_layout
+
+\begin_layout Plain Layout
+
+auto lo
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+iface lo inet loopback
+\end_layout
+
+\begin_layout Plain Layout
+
+iface eth0 inet dhcp
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+auto wlan0
+\end_layout
+
+\begin_layout Plain Layout
+
+allow-hotplug wlan0
+\end_layout
+
+\begin_layout Plain Layout
+
+iface wlan0 inet dhcp
+\end_layout
+
+\begin_layout Plain Layout
+
+    wpa-ssid "MERCURY_4E68"　# 这个是wifi名称，这个需要填写你自己的wifi名称
+\end_layout
+
+\begin_layout Plain Layout
+
+    wpa-psk "password"  #　这个是wifi密码，这个需要填写wifi的密码
+\end_layout
+
+\begin_layout Plain Layout
+
+address 192.168.1.102   # 设定的静态IP地址，ssh连接的时候就不需要再通过路由器查看树莓派的ip地址
+\end_layout
+
+\begin_layout Plain Layout
+
+netmask 255.255.255.0   # 网络掩码
+\end_layout
+
+\begin_layout Plain Layout
+
+gateway 192.168.1.1     # 网关
+\end_layout
+
+\begin_layout Plain Layout
+
+network 192.168.1.1     # 网络地址
+\end_layout
+
+\begin_layout Plain Layout
+
+iface default inet dhcp # 设置默认连接
+\end_layout
+
+\begin_layout Plain Layout
+
+# 保存退出
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+详细来解释一下修改的内容：
+\end_layout
+
+\begin_layout Standard
+auto lo //表示使用localhost
+\end_layout
+
+\begin_layout Standard
+iface eth0 inet dhcp //表示如果有网卡ech0, 则用dhcp获得IP地址 (这个网卡是本机的网卡，而不是WIFI网卡)
+\end_layout
+
+\begin_layout Standard
+auto wlan0 //表示如果有wlan设备，使用wlan0设备名
+\end_layout
+
+\begin_layout Standard
+allow-hotplug wlan0 //表示wlan设备可以热插拨
+\end_layout
+
+\begin_layout Standard
+iface wlan0 inet dhcp //表示如果有WLAN网卡wlan0 (就是WIFI网卡), 则用dhcp获得IP地址
+\end_layout
+
+\begin_layout Standard
+其他数据在上面命令行代码展示的过程中已经解释过了。
+\end_layout
+
+\begin_layout Standard
+最后使用下面的命令来立即连接所配置的wifi：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+pi@raspberrypi:~$ sudo /etc/init.d/networking restart
+\end_layout
+
+\begin_layout Plain Layout
+
+.
+ ok 说明启动成功，也可以直接重启树莓派来连接
+\end_layout
+
+\begin_layout Plain Layout
+
+pi@raspberrypi:~$ ifconfig # 用 ifconfig 命令可以看到 wlan0 设备
+\end_layout
+
+\begin_layout Plain Layout
+
+wlan0     Link encap:Ethernet  HWaddr 00:16:3e:00:4f:15  
+\end_layout
+
+\begin_layout Plain Layout
+
+          inet addr:192.168.1.102  # 有了IP地址(已连接)，说明无线网络配置成功
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+这样wifi配置完成后可以通过路由器接入互联网了，这时候可以通过ssh来连接树莓派，就不再需要屏幕了。这里需要强调的是，通过HDMI接口也可以连接到显示器上，如
+果显示器没有HDMI接口的，需要通过HDMI转VGA转换器来进行信号转换，需要强调的是转换器需要通过外部电源供电才能保证稳定工作，也就是使用有源的转换器才可以。
+\end_layout
+
+\begin_layout Standard
+下面通过ssh命令连接树莓派，操作如下:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+lsy-android@lsyAndroid:~$ ssh pi@192.168.0.102
+\end_layout
+
+\begin_layout Plain Layout
+
+ssh: connect to host 192.168.0.102 port 22: No route to host  
+\end_layout
+
+\begin_layout Plain Layout
+
+# 可能会出现失败的情况，所以需要查看设置没有错误的情况下，再重试几次
+\end_layout
+
+\begin_layout Plain Layout
+
+lsy-android@lsyAndroid:~$ ssh pi@192.168.0.102The authenticity of host '192.168.0.102
+ (192.168.0.102)' can't be established.
+\end_layout
+
+\begin_layout Plain Layout
+
+ECDSA key fingerprint is 3f:7d:8f:8c:4b:6d:9e:70:0f:6e:28:28:bb:51:01:86.
+\end_layout
+
+\begin_layout Plain Layout
+
+Are you sure you want to continue connecting (yes/no)? yes  # 保存ssh key
+\end_layout
+
+\begin_layout Plain Layout
+
+Warning: Permanently added '192.168.0.102' (ECDSA) to the list of known hosts.
+\end_layout
+
+\begin_layout Plain Layout
+
+pi@192.168.0.102's password: 　　# 树莓派的初始密码是raspberry
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+The programs included with the Debian GNU/Linux system are free software;
+\end_layout
+
+\begin_layout Plain Layout
+
+the exact distribution terms for each program are described in the
+\end_layout
+
+\begin_layout Plain Layout
+
+individual files in /usr/share/doc/*/copyright.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+\end_layout
+
+\begin_layout Plain Layout
+
+permitted by applicable law.
+\end_layout
+
+\begin_layout Plain Layout
+
+Last login: Fri Mar 18 09:16:05 2016
+\end_layout
+
+\begin_layout Plain Layout
+
+pi@raspberrypi:~ $ 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+这样网络配置就完成了，还需要更换一下树莓派的源，因为默认使用的是国外的源，下载和更新的速度都比较慢，所以需要更换为国内的源，过程如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+pi@raspberrypi:~ $ sudo nano /etc/apt/source.list 
+\end_layout
+
+\begin_layout Plain Layout
+
+# 删除原文件所有内容，编辑文档内容如下:
+\end_layout
+
+\begin_layout Plain Layout
+
+deb http://mirror.sysu.edu.cn/raspbian/raspbian/ jessie main contrib non-free
+\end_layout
+
+\begin_layout Plain Layout
+
+deb-src http://mirror.sysu.edu.cn/raspbian/raspbian/ jessie main contrib non-free
+\end_layout
+
+\begin_layout Plain Layout
+
+# 保存退出
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+pi@raspberrypi:/etc/apt $ sudo apt-get update # 手动更新源
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+需要说明的是最新的系统中，即使你更新了国内源，它还是会去连接国外的源，但是国内源的优先级高，除了update的时候略有影响，其他安装软件的时候影响不大！
+\end_layout
+
+\begin_layout Standard
+下面需要安装一下基本的开发工具和配置环境，首先需要安装git和vim，过程如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+pi@raspberrypi:~ $ sudo apt-get install git vim # 主要是安装git和vim这两个工具
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+vim这里需要简单来配置一下，以方便使用，编写代码的过程中可以更加方便。由于树莓派性能不高，这里的配置比较简单，过程如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+pi@raspberrypi:~ $ cd Downloads/ # 切换到Downloads目录下
+\end_layout
+
+\begin_layout Plain Layout
+
+pi@raspberrypi:~/Downloads $ git clone https://github.com/wklken/vim-for-server.gi
+t　# 下载
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# 下载完毕后需要将vim-for-server下的vimrc文件链接到用户pi的目录下
+\end_layout
+
+\begin_layout Plain Layout
+
+pi@raspberrypi:~/Downloads $ sudo ln -s vim-for-server/vimrc ~/.vimrc
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+这样vim就配置完成，效果图如图
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:树莓派上vim配置后的效果图"
+
+\end_inset
+
+所示。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figure/树莓派上vim配置后的效果图.png
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:树莓派上vim配置后的效果图"
+
+\end_inset
+
+vim配置后的效果图
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+最后，需要搭建python环境以及下载UUGear框架。操作如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+pi@raspberrypi:~ $ mkdir IOT　# 创建文件夹
+\end_layout
+
+\begin_layout Plain Layout
+
+pi@raspberrypi:~ $ cd IOT/　　# 切换文件夹
+\end_layout
+
+\begin_layout Plain Layout
+
+pi@raspberrypi:~/IOT $ sudo apt-get install python-pip python-gevent python-dev
+ # 需要安装的python组件
+\end_layout
+
+\begin_layout Plain Layout
+
+pi@raspberrypi:~/IOT $ sudo pip install virtualenv  # 安装虚拟环境工具
+\end_layout
+
+\begin_layout Plain Layout
+
+pi@raspberrypi:~/IOT $ virtualenv venv # 创建虚拟环境
+\end_layout
+
+\begin_layout Plain Layout
+
+pi@raspberrypi:~/IOT $ source venv/bin/activate　# 启用虚拟环境
+\end_layout
+
+\begin_layout Plain Layout
+
+(venv) pi@raspberrypi:~/IOT $ git clone https://github.com/uugear/UUGear.git
+ # 下载UUGear框架
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+这一部分就完成了。
+\end_layout
+
+\begin_layout Subsubsection
+接口板制作软件的安装
+\end_layout
+
+\begin_layout Standard
+由于使用到了Arduino，而且Arduino是作为一个接口板的角色，所以需要在自己的PC上安装Arduino IDE，可以从这个地址https://www.ar
+duino.cc/en/Main/Software下载Arduino IDE。在Linux下，这个IDE是开箱即用的，解压即可，然后切换到解压目录，运行下面的命令
+即可启动：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+lsyAndroid@iZ280p9hiiuZ:~/IOT_Project/Arduino/ide/arduino-1.6.7$ ./arduino
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+启动后会出现图形界面，如图
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Arduino-IDE启动后的界面"
+
+\end_inset
+
+所示。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figure/arduinoIDE启动.png
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Arduino-IDE启动后的界面"
+
+\end_inset
+
+Arduino IDE启动后的界面
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+树莓派端的代码编写
+\end_layout
+
+\begin_layout Subsubsection
+接口板的制作
+\end_layout
+
+\begin_layout Standard
+在当前使用的电脑上也需要下载一份UUGear框架的代码，操作过程和在树莓派上的过程是一致的，然后切换到UUGear下的Arduino目录，用Aduino
+ IDE打开这个名称为UUGear.ino的文件，如图
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:UUGear框架的Arduino接口板代码"
+
+\end_inset
+
+所示。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figure/UUGear接口板代码.png
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:UUGear框架的Arduino接口板代码"
+
+\end_inset
+
+UUGear框架的Arduino接口板代码
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+这时候需要把Arudino UNO R3通过USB数据线（也就是Arduino leonardo线）接入PC，先进行两步设置，如图
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Arduino-IDE选择设备类型"
+
+\end_inset
+
+，
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Arduino-IDE选择串行端口"
+
+\end_inset
+
+所示。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figure/Arduino_IDE_选择设备类别.png
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Arduino-IDE选择设备类型"
+
+\end_inset
+
+Arduino IDE选择设备类型
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figure/Arduino_IDE_选择串行端口.png
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Arduino-IDE选择串行端口"
+
+\end_inset
+
+Arduino IDE选择串行端口
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+选择完成后，进行代码的编译和烧录，编译的时候系统会监测代码是否符合规范，编译没有问题后，进行烧录操作，操作过程如图
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Arduino-IDE-编译操作"
+
+\end_inset
+
+，
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Arduino-IDE烧录操作"
+
+\end_inset
+
+所示。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figure/Arduino_IDE_编译.png
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Arduino-IDE-编译操作"
+
+\end_inset
+
+Arduino IDE 编译操作
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figure/Arduino_IDE_烧录操作.png
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Arduino-IDE烧录操作"
+
+\end_inset
+
+Arduino IDE烧录操作
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+当烧录成功后也会从下面的控制台弹出如图
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Arduino-IDE烧录操作"
+
+\end_inset
+
+所示的提示信息，这样接口板就制作完毕了。
+\end_layout
+
+\begin_layout Subsubsection
+UUGear框架的使用之前
+\end_layout
+
+\begin_layout Standard
+接口板做好后，需要将接口板通过USB数据线（也就是Arduino leonardo线）接入树莓派。
+\end_layout
+
+\begin_layout Standard
+在编写正式的程序之前，需要在自己的PC上通过ssh连接到树莓派，并且需要将UUGear的源代码下载到树莓派上。操作如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+pi@raspberry:~/IOT_Project/examples$ git clone https://github.com/uugear/UUGear.gi
+t
+\end_layout
+
+\begin_layout Plain Layout
+
+# 如果无法执行，请使用root权限执行，即在命令开始的时候添加sudo 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+当源代码准备好以后，需要验证一下接口板是否能够正常工作，操作过程如下:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+pi@raspberry:~/IOT_Project/examples$ cd ./UUGear/Raspberry/bin
+\end_layout
+
+\begin_layout Plain Layout
+
+pi@raspberry:~/IOT_Project/examples/UUGear/Raspberry/bin$ ./lsuu　# 执行这个命令，来查找接口板
+\end_layout
+
+\begin_layout Plain Layout
+
+--------------------------------------------------
+\end_layout
+
+\begin_layout Plain Layout
+
+UUGear-Arduino-5162-9034	(/dev/ttyUSB0) # 这样就说明设备已经找到了，而且正常可用
+\end_layout
+
+\begin_layout Plain Layout
+
+--------------------------------------------------
+\end_layout
+
+\begin_layout Plain Layout
+
+1 device(s) found.
+\end_layout
+
+\begin_layout Plain Layout
+
+pi@raspberrypi:~/IOT-Project/examples/UUGear/RaspberryPi/bin$ 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+如果接口板找不到而且发生错误，一般会有两种情况：
+\end_layout
+
+\begin_layout Standard
+1、程序的不正常退出。当程序执行出现问题时，例如命令行打印出了异常信息，或者执行ctrl+c结束程序时，无法正常结束，这样的情况下再去执行./lsuu命令，会发生
+找不到接口板的问题，这时先试试Arduino上的RESET键操作，然后进行连接，如果不行的话，就需要断开usb连接线，再重新插上，这时再执行命令，就可以找到接口
+板了。
+\end_layout
+
+\begin_layout Standard
+2、接口板制作过程中发生异常，这时需要重新制作接口板。
+\end_layout
+
+\begin_layout Standard
+然后需要做的就是记住这个接口板的编号，由于开头的名称是一致的，都是“UUGear-Arduino-”，所以只需要记住后边的8位数字即可，后边需要根据这个编号来找
+到Arduino设备。
+\end_layout
+
+\begin_layout Standard
+最后需要强调的是，在编写代码的过程中，要遵循“高内聚低耦合”的原则，单个函数的功能尽量单一，组合的时候尽量灵活可控制。
+\end_layout
+
+\begin_layout Subsubsection
+UUGear框架使用(1)－－读取温湿度信息
+\end_layout
+
+\begin_layout Standard
+这里要实现这样一个功能，通过函数读取温湿度信息，并将温湿度信息以字典的形式返回。这里先在控制台以日志的形式将温湿度信息输出。这段代码对应的接线图如图
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:温度采集模块最终连线示意图"
+
+\end_inset
+
+，原理图如图
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "温度采集模块最终原理图"
+
+\end_inset
+
+。代码编写如下:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+# !/usr/bin/python3
+\end_layout
+
+\begin_layout Plain Layout
+
+# encoding: utf-8
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# 文件名称：GetTempDamp.py
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# 导入相关包
+\end_layout
+
+\begin_layout Plain Layout
+
+# 注意：代码需要在UUGear/RaspberryPi/bin目录下才能正常运行，因为需要从这个目录下导入UUGear框架
+\end_layout
+
+\begin_layout Plain Layout
+
+from time import sleep
+\end_layout
+
+\begin_layout Plain Layout
+
+from UUGear import *
+\end_layout
+
+\begin_layout Plain Layout
+
+from time import gmtime, strftime
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\end_layout
+
+\begin_layout Plain Layout
+
+UUGearDevice.setShowLogs(1) # 显示日志级别
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\end_layout
+
+\begin_layout Plain Layout
+
+device = UUGearDevice('UUGear-Arduino-5162-9034') # 初始化设备
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\end_layout
+
+\begin_layout Plain Layout
+
+     
+\end_layout
+
+\begin_layout Plain Layout
+
+# 定义读取信息的函数，传入获取的设备和引脚参数
+\end_layout
+
+\begin_layout Plain Layout
+
+def getTempDamp(device_get,port):
+\end_layout
+
+\begin_layout Plain Layout
+
+    data = device_get.readDHT(port) # 框架中自带的方法，读取DHT11传感器的数据
+\end_layout
+
+\begin_layout Plain Layout
+
+    humidity = (data >> 16) / 10
+\end_layout
+
+\begin_layout Plain Layout
+
+    if humidity > 100:
+\end_layout
+
+\begin_layout Plain Layout
+
+        humidity = (data >> 24)
+\end_layout
+
+\begin_layout Plain Layout
+
+    temperature = (data & 32767) / 10
+\end_layout
+
+\begin_layout Plain Layout
+
+    if temperature > 125:
+\end_layout
+
+\begin_layout Plain Layout
+
+        temperature = ((data & 32512) >> 8)
+\end_layout
+
+\begin_layout Plain Layout
+
+    if (data & 32768):
+\end_layout
+
+\begin_layout Plain Layout
+
+        temperature = -temperature
+\end_layout
+
+\begin_layout Plain Layout
+
+    if temperature != -127 and humidity != -1:
+\end_layout
+
+\begin_layout Plain Layout
+
+        return {"Temp":temperature,"Damp":humidity} # 正常数据
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        return {"Temp":1111,"Damp":1111} # 异常数据
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\end_layout
+
+\begin_layout Plain Layout
+
+# 编写测试程序
+\end_layout
+
+\begin_layout Plain Layout
+
+if device.isValid(): # 当设备真正可用时执行
+\end_layout
+
+\begin_layout Plain Layout
+
+    try:
+\end_layout
+
+\begin_layout Plain Layout
+
+        while(True):
+\end_layout
+
+\begin_layout Plain Layout
+
+            temp_damp = getTempDamp(device,4)
+\end_layout
+
+\begin_layout Plain Layout
+
+            print("Temp = %s",temp_damp['Temp'],"Damp = ",temp_damp['Damp'])
+\end_layout
+
+\begin_layout Plain Layout
+
+            sleep(1)
+\end_layout
+
+\begin_layout Plain Layout
+
+    except KeyboardInterrupt: # 捕获在键盘上使用ctrl+c终止程序时带来的异常
+\end_layout
+
+\begin_layout Plain Layout
+
+        pass    
+\end_layout
+
+\begin_layout Plain Layout
+
+    device.detach()
+\end_layout
+
+\begin_layout Plain Layout
+
+    device.stopDaemon()
+\end_layout
+
+\begin_layout Plain Layout
+
+             
+\end_layout
+
+\begin_layout Plain Layout
+
+else:
+\end_layout
+
+\begin_layout Plain Layout
+
+    print('device is not ready!')   
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+这时在命令行中执行下面命令即可运行该程序并查看运行结果：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+pi@raspberrypi:~/IOT-Project/examples/UUGear/RaspberryPi/bin$ python GetTempDamp.
+py
+\end_layout
+
+\begin_layout Plain Layout
+
+Client queue name=/uugear_response_queue_1
+\end_layout
+
+\begin_layout Plain Layout
+
+Client queue name=/uugear_response_queue_1
+\end_layout
+
+\begin_layout Plain Layout
+
+UUGear device found.
+ fd=8
+\end_layout
+
+\begin_layout Plain Layout
+
+('Temp =', 20, 'Damp = ', 21)
+\end_layout
+
+\begin_layout Plain Layout
+
+('Temp =', 20, 'Damp = ', 21)
+\end_layout
+
+\begin_layout Plain Layout
+
+('Temp =', 21, 'Damp = ', 20)
+\end_layout
+
+\begin_layout Plain Layout
+
+('Temp =', 21, 'Damp = ', 20)
+\end_layout
+
+\begin_layout Plain Layout
+
+('Temp =', 20, 'Damp = ', 21)
+\end_layout
+
+\begin_layout Plain Layout
+
+('Temp =', 1111, 'Damp = ', 1111) # 异常数据也会显示出来
+\end_layout
+
+\begin_layout Plain Layout
+
+('Temp =', 21, 'Damp = ', 20)
+\end_layout
+
+\begin_layout Plain Layout
+
+('Temp =', 1111, 'Damp = ', 1111)
+\end_layout
+
+\begin_layout Plain Layout
+
+^Cpi@raspberrypi:~/IOT-Project/examples/UUGear/RaspberryPi/bin$ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+UUGear框架使用(2)－－控制继电器开闭
+\end_layout
+
+\begin_layout Standard
+这里需要实现的功能是，设置继电器打开或者关闭的状态，设置完成后要获取这个状态，保证继电器设置的状态与获取的状态一致，确保是自己真正设置的状态。这段代码对应的接线
+图如图
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:继电器功能模块接线图"
+
+\end_inset
+
+，原理图如图
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "继电器功能模块_原理图"
+
+\end_inset
+
+。代码如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#!/usr/bin/env python                                                  
+     
+\end_layout
+
+\begin_layout Plain Layout
+
+# encoding: utf-8   
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# 文件名称：SetPin.py
+\end_layout
+
+\begin_layout Plain Layout
+
+                       
+\end_layout
+
+\begin_layout Plain Layout
+
+from UUGear import * 
+\end_layout
+
+\begin_layout Plain Layout
+
+from time import sleep
+\end_layout
+
+\begin_layout Plain Layout
+
+                      
+\end_layout
+
+\begin_layout Plain Layout
+
+UUGearDevice.setShowLogs(1) # 设置日志级别
+\end_layout
+
+\begin_layout Plain Layout
+
+                       
+\end_layout
+
+\begin_layout Plain Layout
+
+device = UUGearDevice('UUGear-Arduino-5162-9034') # 获取设备
+\end_layout
+
+\begin_layout Plain Layout
+
+                       
+\end_layout
+
+\begin_layout Plain Layout
+
+device.setPinModeAsOutput(2) # 设置引脚为输出电平端
+\end_layout
+
+\begin_layout Plain Layout
+
+                       
+\end_layout
+
+\begin_layout Plain Layout
+
+device.setPinHigh(2) # 初始化引脚电平为高电平
+\end_layout
+
+\begin_layout Plain Layout
+
+                       
+\end_layout
+
+\begin_layout Plain Layout
+
+# 定义读取信息的函数，传入引脚编号，高低电平的boolean值
+\end_layout
+
+\begin_layout Plain Layout
+
+def setPinHighOrLow(device,pinNum,highOrLow):
+\end_layout
+
+\begin_layout Plain Layout
+
+    if highOrLow:    
+\end_layout
+
+\begin_layout Plain Layout
+
+        device.setPinHigh(pinNum)
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:            
+\end_layout
+
+\begin_layout Plain Layout
+
+        device.setPinLow(pinNum)
+\end_layout
+
+\begin_layout Plain Layout
+
+    status = device.getPinStatus(pinNum) # 获取当前引脚的状态，判断引脚电平设置是否生效
+\end_layout
+
+\begin_layout Plain Layout
+
+    return status                
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# 测试程序
+\end_layout
+
+\begin_layout Plain Layout
+
+if device.isValid():             
+\end_layout
+
+\begin_layout Plain Layout
+
+    try:                         
+\end_layout
+
+\begin_layout Plain Layout
+
+        while(True):             
+\end_layout
+
+\begin_layout Plain Layout
+
+            setPinHighOrLow(device,2,True)
+\end_layout
+
+\begin_layout Plain Layout
+
+            sleep(1)             
+\end_layout
+
+\begin_layout Plain Layout
+
+            print("status=====",status)
+\end_layout
+
+\begin_layout Plain Layout
+
+            setPinHighOrLow(device,2,False)
+\end_layout
+
+\begin_layout Plain Layout
+
+            sleep(1)             
+\end_layout
+
+\begin_layout Plain Layout
+
+            print("status====",status)
+\end_layout
+
+\begin_layout Plain Layout
+
+    except KeyboardInterrupt:    
+\end_layout
+
+\begin_layout Plain Layout
+
+        pass                     
+\end_layout
+
+\begin_layout Plain Layout
+
+    device.detach()              
+\end_layout
+
+\begin_layout Plain Layout
+
+    device.stopDaemon()          
+\end_layout
+
+\begin_layout Plain Layout
+
+                                 
+\end_layout
+
+\begin_layout Plain Layout
+
+else:                            
+\end_layout
+
+\begin_layout Plain Layout
+
+    print('device is not ready!')   
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+这时执行如下命令并查看运行结果如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+pi@raspberrypi:~/IOT-Project/examples/UUGear/RaspberryPi/bin$ python SetPin.py
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+Client queue name=/uugear_response_queue_1
+\end_layout
+
+\begin_layout Plain Layout
+
+Client queue name=/uugear_response_queue_1
+\end_layout
+
+\begin_layout Plain Layout
+
+UUGear device found.
+ fd=8
+\end_layout
+
+\begin_layout Plain Layout
+
+('status1=====', 1) # 引脚处于高电平状态
+\end_layout
+
+\begin_layout Plain Layout
+
+('status2====', 0) # 引脚处于低电平状态
+\end_layout
+
+\begin_layout Plain Layout
+
+('status1=====', 1)
+\end_layout
+
+\begin_layout Plain Layout
+
+('status2====', 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+('status1=====', 1)
+\end_layout
+
+\begin_layout Plain Layout
+
+('status2====', 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+('status1=====', 1)
+\end_layout
+
+\begin_layout Plain Layout
+
+('status2====', 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+^Cpi@raspberrypi:~/IOT-Project/examples/UUGear/RaspberryPi/bin$ 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+在程序执行过程中，会看到LED有规律的亮灭，时间间隔为1s。
+\end_layout
+
+\begin_layout Standard
+实际上到这里，针对硬件部分的编程就基本完成了，下面需要针对服务端进行收发数据的编程。
+\end_layout
+
+\begin_layout Subsection
+与服务端交互的代码编写
+\end_layout
+
+\begin_layout Standard
+无论是在树莓派上，还是在android终端，均使用paho框架同服务端进行通信，在android app上，通过导入paho框架的jar包来实现引用，而在树莓派
+上，需要通过pip来安装，过程如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+pi@raspberrypi:~/IOT-Project/examples/UUGear/RaspberryPi/bin$ pip install
+ paho-mqtt 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+安装完成之后就可以在python代码的编写过程中引入。
+\end_layout
+
+\begin_layout Subsubsection
+初始化客户端
+\end_layout
+
+\begin_layout Standard
+初始化客户端只需要一句代码即可：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+import paho.mqtt.client as mqtt # 导入相应包
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+mqttc = mqtt.Client()
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+但是这样是不够的，原因是客户端初始化的时候，默认使用的是MQTTv3.1协议，现行服务端的协议为MQTTv3.1.1，这样造成了无法对接的现象，存在较大偏差，在调试的
+过程中也是吃了不少苦头，所以这里必须指定协议版本，写法如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+mqttc = mqtt.Client(protocol=mqtt.MQTTv311) # 指定MQTT协议版本
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+发布消息（publish）
+\end_layout
+
+\begin_layout Standard
+发布消息也很简单，只需要一句代码就可以实现：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+import paho.mqtt.publish as publish #　导入相应包
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+publish.single("paho/test/single", "payload", hostname="iot.eclipse.org") #
+ 发送一条消息
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+msgs = [{'topic':"paho/test/multiple", 'payload':"multiple 1"},
+\end_layout
+
+\begin_layout Plain Layout
+
+    ("paho/test/multiple", "multiple 2", 0, False)]
+\end_layout
+
+\begin_layout Plain Layout
+
+publish.multiple(msgs, hostname="iot.eclipse.org")　# 发送多条消息
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+解释一下，publish.single()方法中第一个参数是发送主题（topic），第二个参数是消息类型，第三个参数是服务端地址；publish.multiple(
+)方法中，第一个参数是消息集合，第二个参数是服务端地址。
+\end_layout
+
+\begin_layout Standard
+这里使用的是publish.single()方法，将信息一条一条按照顺序发出去。
+\end_layout
+
+\begin_layout Subsubsection
+订阅消息（subscribe）
+\end_layout
+
+\begin_layout Standard
+订阅消息的编写相对来讲比较麻烦，需要实现相应的回调函数，才能使订阅起作用，代码示例如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+import sys
+\end_layout
+
+\begin_layout Plain Layout
+
+try:
+\end_layout
+
+\begin_layout Plain Layout
+
+    import paho.mqtt.client as mqtt
+\end_layout
+
+\begin_layout Plain Layout
+
+except ImportError:
+\end_layout
+
+\begin_layout Plain Layout
+
+    # 导入包异常时的处理
+\end_layout
+
+\begin_layout Plain Layout
+
+    import os
+\end_layout
+
+\begin_layout Plain Layout
+
+    import inspect
+\end_layout
+
+\begin_layout Plain Layout
+
+    cmd_subfolder = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.g
+etfile( inspect.currentframe() ))[0],"../src")))
+\end_layout
+
+\begin_layout Plain Layout
+
+    if cmd_subfolder not in sys.path:
+\end_layout
+
+\begin_layout Plain Layout
+
+        sys.path.insert(0, cmd_subfolder)
+\end_layout
+
+\begin_layout Plain Layout
+
+    import paho.mqtt.client as mqtt
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# 实现四个回调方法
+\end_layout
+
+\begin_layout Plain Layout
+
+def on_connect(mqttc, obj, flags, rc):
+\end_layout
+
+\begin_layout Plain Layout
+
+    print "Connected to %s:%s" % (mqttc._host, mqttc._port)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+def on_message(mqttc, obj, msg):
+\end_layout
+
+\begin_layout Plain Layout
+
+　　 # 当收到订阅消息时，在这个回调方法中进行进一步处理
+\end_layout
+
+\begin_layout Plain Layout
+
+    print(msg.topic+" "+str(msg.qos)+" "+str(msg.payload))
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+def on_publish(mqttc, obj, mid):
+\end_layout
+
+\begin_layout Plain Layout
+
+    print("mid: "+str(mid))
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+def on_subscribe(mqttc, obj, mid, granted_qos):
+\end_layout
+
+\begin_layout Plain Layout
+
+    print("Subscribed: "+str(mid)+" "+str(granted_qos))
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# 输出日志的回调方法
+\end_layout
+
+\begin_layout Plain Layout
+
+def on_log(mqttc, obj, level, string):
+\end_layout
+
+\begin_layout Plain Layout
+
+    print(string)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# 指定回调方法以及初始化订阅信息
+\end_layout
+
+\begin_layout Plain Layout
+
+mqttc = mqtt.Client(protocol = mqtt.MQTTv311)
+\end_layout
+
+\begin_layout Plain Layout
+
+mqttc.on_message = on_message
+\end_layout
+
+\begin_layout Plain Layout
+
+mqttc.on_connect = on_connect
+\end_layout
+
+\begin_layout Plain Layout
+
+mqttc.on_publish = on_publish
+\end_layout
+
+\begin_layout Plain Layout
+
+mqttc.on_subscribe = on_subscribe
+\end_layout
+
+\begin_layout Plain Layout
+
+# 显示日志信息
+\end_layout
+
+\begin_layout Plain Layout
+
+mqttc.on_log = on_log
+\end_layout
+
+\begin_layout Plain Layout
+
+# 连接服务端并执行订阅
+\end_layout
+
+\begin_layout Plain Layout
+
+mqttc.connect_srv("mosquitto.org", 60)
+\end_layout
+
+\begin_layout Plain Layout
+
+mqttc.subscribe("$SYS/broker/version", 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# 当收到消息时，自动打印消息；未收到消息时，会阻塞线程
+\end_layout
+
+\begin_layout Plain Layout
+
+rc = 0
+\end_layout
+
+\begin_layout Plain Layout
+
+while rc == 0:
+\end_layout
+
+\begin_layout Plain Layout
+
+    rc = mqttc.loop()
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+print("rc: "+str(rc))
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+这样去编写是不太好的，如果单纯就是测试一下是可以的，但是在正式环境中，需要处理的内容不止有订阅消息以及收到订阅消息后根据接口文档进行后续操作，还需要发送消息，因
+此下面会先对这个类进行下封装，在正式环境中会引入多线程来进行处理。
+\end_layout
+
+\begin_layout Subsubsection
+完整封装
+\end_layout
+
+\begin_layout Standard
+这里对整个与服务端交互的部分进行封装，代码如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#!/usr/bin/env python                                                  
+     
+\end_layout
+
+\begin_layout Plain Layout
+
+# encoding: utf-8    
+\end_layout
+
+\begin_layout Plain Layout
+
+                                           
+\end_layout
+
+\begin_layout Plain Layout
+
+import paho.mqtt.client as mqtt
+\end_layout
+
+\begin_layout Plain Layout
+
+import paho.mqtt.publish as publish
+\end_layout
+
+\begin_layout Plain Layout
+
+                               
+\end_layout
+
+\begin_layout Plain Layout
+
+class MainMQTTClass: 
+\end_layout
+
+\begin_layout Plain Layout
+
+    def __init__(self, clientid=None, protocol=mqtt.MQTTv311):
+\end_layout
+
+\begin_layout Plain Layout
+
+        self._mqttc = mqtt.Client(clientid,protocol)
+\end_layout
+
+\begin_layout Plain Layout
+
+        self._mqttc.on_message = self.mqtt_on_message
+\end_layout
+
+\begin_layout Plain Layout
+
+        self._mqttc.on_connect = self.mqtt_on_connect
+\end_layout
+
+\begin_layout Plain Layout
+
+        self._mqttc.on_publish = self.mqtt_on_publish
+\end_layout
+
+\begin_layout Plain Layout
+
+        self._mqttc.on_subscribe = self.mqtt_on_subscribe
+\end_layout
+
+\begin_layout Plain Layout
+
+                      
+\end_layout
+
+\begin_layout Plain Layout
+
+    def mqtt_on_connect(self, mqttc, obj, flags, rc)
+\end_layout
+
+\begin_layout Plain Layout
+
+        print("rc: "+str(rc)) 
+\end_layout
+
+\begin_layout Plain Layout
+
+                      
+\end_layout
+
+\begin_layout Plain Layout
+
+    def mqtt_on_message(self, mqttc, obj, msg):
+\end_layout
+
+\begin_layout Plain Layout
+
+        # 从这里处理接收的消息，并操控电平高低
+\end_layout
+
+\begin_layout Plain Layout
+
+        print(msg.topic+" "+str(msg.qos)+" "+str(msg.payload))
+\end_layout
+
+\begin_layout Plain Layout
+
+    def mqtt_on_publish(self, mqttc, obj, mid):
+\end_layout
+
+\begin_layout Plain Layout
+
+        print("mid: "+str(mid))
+\end_layout
+
+\begin_layout Plain Layout
+
+                            
+\end_layout
+
+\begin_layout Plain Layout
+
+    def mqtt_on_subscribe(self, mqttc, obj, mid, granted_qos):
+\end_layout
+
+\begin_layout Plain Layout
+
+        print("Subscribed: "+str(mid)+" "+str(granted_qos))
+\end_layout
+
+\begin_layout Plain Layout
+
+                            
+\end_layout
+
+\begin_layout Plain Layout
+
+    def mqtt_on_log(self, mqttc, obj, level, string):
+\end_layout
+
+\begin_layout Plain Layout
+
+        print(string)      
+\end_layout
+
+\begin_layout Plain Layout
+
+    # 订阅消息的方法 
+\end_layout
+
+\begin_layout Plain Layout
+
+    def subscribe_all(self,address,port = 1883,keepalive = 60,topic,qos
+ = 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+        self._mqttc.connect(address, port, keepalive)
+\end_layout
+
+\begin_layout Plain Layout
+
+        self._mqttc.subscribe(topic, qos)
+\end_layout
+
+\begin_layout Plain Layout
+
+        # 阻塞线程，持续运行                                                
+\end_layout
+
+\begin_layout Plain Layout
+
+        mqttc.loop_forever()     
+\end_layout
+
+\begin_layout Plain Layout
+
+    # 发送消息的方法   
+\end_layout
+
+\begin_layout Plain Layout
+
+    def publish_msg(self.topic,msg,address):
+\end_layout
+
+\begin_layout Plain Layout
+
+        publish(topic,msg,address)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+协议实现
+\end_layout
+
+\begin_layout Standard
+这一部分需要把前面所编写的内容进行整合，引入线程的概念，让订阅消息的操作单独一个线程运行。得到消息后进行Json解析，并调用相应的硬件电路控制函数来执行解析后的
+指令。根据一开始制定的流程图和通信协议，来分功能进行编写，在最后给出完整的可运行的程序。
+\end_layout
+
+\begin_layout Standard
+首先是温度数据采集的流程在树莓派上实现的部分，功能函数实现如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+# 定义读取温度信息的函数，传入获取的设备和引脚参数
+\end_layout
+
+\begin_layout Plain Layout
+
+def getTemp(device,port):
+\end_layout
+
+\begin_layout Plain Layout
+
+    data = device.readDHT(port) # 框架中自带的方法，读取DHT11传感器的数据
+\end_layout
+
+\begin_layout Plain Layout
+
+    humidity = (data >> 16) / 10
+\end_layout
+
+\begin_layout Plain Layout
+
+    if humidity > 100:
+\end_layout
+
+\begin_layout Plain Layout
+
+        humidity = (data >> 24)
+\end_layout
+
+\begin_layout Plain Layout
+
+    temperature = (data & 32767) / 10
+\end_layout
+
+\begin_layout Plain Layout
+
+    if temperature > 125:
+\end_layout
+
+\begin_layout Plain Layout
+
+        temperature = ((data & 32512) >> 8)
+\end_layout
+
+\begin_layout Plain Layout
+
+    if (data & 32768):
+\end_layout
+
+\begin_layout Plain Layout
+
+        temperature = -temperature
+\end_layout
+
+\begin_layout Plain Layout
+
+    if temperature != -127:                                   
+\end_layout
+
+\begin_layout Plain Layout
+
+　      return {"temp":temperature} # 正常数据  
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+def publishTempData():                                        
+\end_layout
+
+\begin_layout Plain Layout
+
+    temp = readTemp(device,port)                              
+\end_layout
+
+\begin_layout Plain Layout
+
+    # 字典合并                                                
+\end_layout
+
+\begin_layout Plain Layout
+
+    jsonData = {"status":0}                                   
+\end_layout
+
+\begin_layout Plain Layout
+
+    jsonData.update(temp)                                     
+\end_layout
+
+\begin_layout Plain Layout
+
+    print(jsonData)                                           
+\end_layout
+
+\begin_layout Plain Layout
+
+    # 字典转Json                                              
+\end_layout
+
+\begin_layout Plain Layout
+
+    clientData = json.dumps(jsonData)                         
+\end_layout
+
+\begin_layout Plain Layout
+
+    publish.single("temperature",clientData,hostname,protocol)    
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+然后是继电器控制流程在树莓派上实现的部分，功能函数实现如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+# 定义读取信息的函数，传入引脚编号，高低电平的boolean值
+\end_layout
+
+\begin_layout Plain Layout
+
+def setPinHighOrLow(device,pinNum,highOrLow):
+\end_layout
+
+\begin_layout Plain Layout
+
+    if highOrLow:    
+\end_layout
+
+\begin_layout Plain Layout
+
+        device.setPinHigh(pinNum)
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:            
+\end_layout
+
+\begin_layout Plain Layout
+
+        device.setPinLow(pinNum)
+\end_layout
+
+\begin_layout Plain Layout
+
+	sleep(1) # 延时１秒
+\end_layout
+
+\begin_layout Plain Layout
+
+    status = device.getPinStatus(pinNum) # 获取当前引脚的状态，判断引脚电平设置是否生效
+\end_layout
+
+\begin_layout Plain Layout
+
+    return status  
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# 订阅消息的操作执行后，获取消息的回调函数
+\end_layout
+
+\begin_layout Plain Layout
+
+def onMessage(mqttc,obj,msg):                                          
+                                  print("订阅的消息为:  "+msg.topic+"  "+str(msg.qos)+"
+  "+str(msg.payload))
+\end_layout
+
+\begin_layout Plain Layout
+
+    if msg.topic == "switch" and str(msg.qos) == "2":
+\end_layout
+
+\begin_layout Plain Layout
+
+        # 解析获取的信息
+\end_layout
+
+\begin_layout Plain Layout
+
+        switchData = str(msg.payload)
+\end_layout
+
+\begin_layout Plain Layout
+
+        jsonData = json.loads(switchData)
+\end_layout
+
+\begin_layout Plain Layout
+
+		# 执行对引脚的操作
+\end_layout
+
+\begin_layout Plain Layout
+
+        status = setPinHighOrLow(device,jsonData['port'],jsonData['isOn'])
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+        # 拼接内容
+\end_layout
+
+\begin_layout Plain Layout
+
+        returnData = {"status":0,"port":jsonData['port'],"status_isOn":status}
+\end_layout
+
+\begin_layout Plain Layout
+
+        # 返回执行的信息
+\end_layout
+
+\begin_layout Plain Layout
+
+        publish.single("switch_status",json.dumps(returnData),hostname,protocol,qo
+s = 2)
+\end_layout
+
+\begin_layout Plain Layout
+
+# 后续执行订阅操作
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+最后是策略实现的部分，代码如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+def publishTempLegency(device, portTemp, portSwitch):
+\end_layout
+
+\begin_layout Plain Layout
+
+    temp = readTemp(device, port)
+\end_layout
+
+\begin_layout Plain Layout
+
+    jsonDataBasic = {"status",100}
+\end_layout
+
+\begin_layout Plain Layout
+
+    jsonDataLowTemp = {"msg_temp":"温度低于24摄氏度，是否关闭空调？"}
+\end_layout
+
+\begin_layout Plain Layout
+
+    jsonDataHighTemp = {"msg_temp":"温度高于30摄氏度，是否打开空调？"}
+\end_layout
+
+\begin_layout Plain Layout
+
+    if temp['temp'] < 24:       
+\end_layout
+
+\begin_layout Plain Layout
+
+        if device.getPinStatus(portSwitch) == 1: # 空调已经打开
+\end_layout
+
+\begin_layout Plain Layout
+
+            jsonLow = jsonDataBasic.update(jsonDataLowTemp)
+\end_layout
+
+\begin_layout Plain Layout
+
+            publish.single("temp_notification",json.dumps(jsonLow),hostname,protoc
+ol,qos = 1)
+\end_layout
+
+\begin_layout Plain Layout
+
+    else if temp['temp'] > 30:  
+\end_layout
+
+\begin_layout Plain Layout
+
+        if device.getPinStatus(portSwitch) == 0: # 空调已经关闭
+\end_layout
+
+\begin_layout Plain Layout
+
+            jsonHigh = jsonDataBasic.update(jsonDataHighTemp)
+\end_layout
+
+\begin_layout Plain Layout
+
+            publish.single("temp_notification",json.dumps(jsonHigh),hostname,proto
+col,qos = 1)
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:                       
+\end_layout
+
+\begin_layout Plain Layout
+
+        print("正常状态。。。")    
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+整个树莓派端的代码实现，放在附录一上。
+\end_layout
+
+\begin_layout Section
+Android端代码的编写
+\end_layout
+
+\begin_layout Subsection
+引入Paho框架的jar包
+\end_layout
+
+\begin_layout Standard
+新建工程，命名为IOT，创建完成之后目录结构如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figure/Android项目的目录结构.png
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:创建Android项目后的工程目录"
+
+\end_inset
+
+创建项目后的工程目录
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+项目创建完成后，需要做的第一件事情就是引入paho框架，可以直接导入jar包，还有更简单的办法就是在build.gradle文件中引入。注意这里的build.gra
+dle文件是属于Module的，也就是你在图
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:创建Android项目后的工程目录"
+
+\end_inset
+
+看到的后边括号中注明了Module:app的文件，需要添加的内容如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+# build.gradle(Module:app)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+apply plugin: 'com.android.application' 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+android {
+\end_layout
+
+\begin_layout Plain Layout
+
+	......
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# 在dependencies节点下添加下面所示的代码
+\end_layout
+
+\begin_layout Plain Layout
+
+dependencies {
+\end_layout
+
+\begin_layout Plain Layout
+
+    ......
+\end_layout
+
+\begin_layout Plain Layout
+
+    // 这里是引入paho框架的相关jar包的代码
+\end_layout
+
+\begin_layout Plain Layout
+
+    compile (group: 'org.eclipse.paho', name: 'org.eclipse.paho.android.service',
+ version: '1.0.2') {
+\end_layout
+
+\begin_layout Plain Layout
+
+        exclude module: 'support-v4'
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+引入jar包完成之后，需要编译一下程序，在AndroidStudio界面的右上方会出现Sync Now的提示，点击即可。这样编译器Gradle就是自动去仓库寻找
+需要的jar文件，并下载到项目中，在编写代码的时候才能真正引用jar包中的代码。
+\end_layout
+
+\begin_layout Subsection
+界面布局的编写
+\end_layout
+
+\begin_layout Standard
+这里主要分三部分，一个是温度数据监测部分，第二个是开关控制部分，第三个是策略通知部分。在这三个部分中，策略通知部分可以不显示在界面上，而是通过通知栏的方式来显示
+，在通知栏提供相应的操作继电器打开和关闭的按钮，所以主界面代码拆分为两部分，下面是数据监测部分的代码：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+ <!-- 温度数据展示 -->
+\end_layout
+
+\begin_layout Plain Layout
+
+    <android.support.v7.widget.CardView
+\end_layout
+
+\begin_layout Plain Layout
+
+        android:layout_width="match_parent"
+\end_layout
+
+\begin_layout Plain Layout
+
+        android:layout_height="0dp"
+\end_layout
+
+\begin_layout Plain Layout
+
+        android:layout_weight="1"
+\end_layout
+
+\begin_layout Plain Layout
+
+        app:cardCornerRadius="8dp"
+\end_layout
+
+\begin_layout Plain Layout
+
+        app:cardElevation="8dp"
+\end_layout
+
+\begin_layout Plain Layout
+
+        app:contentPadding="15dp"
+\end_layout
+
+\begin_layout Plain Layout
+
+        >
+\end_layout
+
+\begin_layout Plain Layout
+
+        <RelativeLayout
+\end_layout
+
+\begin_layout Plain Layout
+
+            android:layout_width="match_parent"
+\end_layout
+
+\begin_layout Plain Layout
+
+            android:layout_height="match_parent"
+\end_layout
+
+\begin_layout Plain Layout
+
+            android:padding="5dp"
+\end_layout
+
+\begin_layout Plain Layout
+
+            >
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+            <ImageView
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:id="@+id/t_img_tag"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_width="wrap_content"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_height="wrap_content"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_alignParentLeft="true"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_alignParentTop="true"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:scaleType="centerCrop"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:src="@mipmap/ic_launcher"
+\end_layout
+
+\begin_layout Plain Layout
+
+                />
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+            <TextView
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:id="@+id/t_temp_title"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_width="wrap_content"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_height="wrap_content"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_alignBottom="@+id/t_img_tag"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_alignParentRight="true"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_alignTop="@+id/t_img_tag"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_toRightOf="@+id/t_img_tag"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:gravity="center"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:text="温度监控"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:textSize="30dp"
+\end_layout
+
+\begin_layout Plain Layout
+
+                />
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+            <TextView
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:id="@+id/t_temp_int_view"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_width="wrap_content"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_height="wrap_content"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_alignParentLeft="true"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_alignParentStart="true"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_below="@+id/t_img_tag"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_toLeftOf="@+id/t_temp_tag_du"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_toStartOf="@+id/t_temp_tag_du"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:gravity="center"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:textSize="30dp"/>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+            <TextView
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:id="@+id/t_temp_tag_du"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_width="wrap_content"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_height="wrap_content"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_alignEnd="@+id/t_temp_title"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_alignRight="@+id/t_temp_title"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_alignTop="@+id/t_temp_int_view"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:gravity="center"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:text="℃"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:textSize="30dp"/>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+        </RelativeLayout>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    </android.support.v7.widget.CardView>
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+继电器控制部分代码如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+  <!-- 继电器控制模块 -->
+\end_layout
+
+\begin_layout Plain Layout
+
+    <android.support.v7.widget.CardView
+\end_layout
+
+\begin_layout Plain Layout
+
+        android:layout_width="match_parent"
+\end_layout
+
+\begin_layout Plain Layout
+
+        android:layout_height="0dp"
+\end_layout
+
+\begin_layout Plain Layout
+
+        android:layout_weight="1"
+\end_layout
+
+\begin_layout Plain Layout
+
+        app:cardCornerRadius="8dp"
+\end_layout
+
+\begin_layout Plain Layout
+
+        app:cardElevation="8dp"
+\end_layout
+
+\begin_layout Plain Layout
+
+        app:contentPadding="15dp"
+\end_layout
+
+\begin_layout Plain Layout
+
+        >
+\end_layout
+
+\begin_layout Plain Layout
+
+        <RelativeLayout
+\end_layout
+
+\begin_layout Plain Layout
+
+            android:layout_width="match_parent"
+\end_layout
+
+\begin_layout Plain Layout
+
+            android:layout_height="match_parent"
+\end_layout
+
+\begin_layout Plain Layout
+
+            android:padding="5dp"
+\end_layout
+
+\begin_layout Plain Layout
+
+            >
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+            <ImageView
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:id="@+id/t_img_tag_s"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_width="wrap_content"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_height="wrap_content"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_alignParentLeft="true"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_alignParentTop="true"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:scaleType="centerCrop"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:src="@mipmap/ic_launcher"
+\end_layout
+
+\begin_layout Plain Layout
+
+                />
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+            <TextView
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:id="@+id/t_temp_title_s"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_width="wrap_content"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_height="wrap_content"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_alignBottom="@+id/t_img_tag_s"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_alignParentRight="true"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_alignTop="@+id/t_img_tag_s"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_toRightOf="@+id/t_img_tag_s"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:gravity="center"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:text="开关控制"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:textSize="30dp"
+\end_layout
+
+\begin_layout Plain Layout
+
+                />
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+            <android.support.v7.widget.SwitchCompat
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:id="@+id/relay_switch_4"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_width="wrap_content"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_height="wrap_content"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:text="继电器"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:checked="false"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:paddingTop="16dp"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_centerVertical="true"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_alignParentRight="true"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_alignParentEnd="true"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_alignLeft="@+id/t_img_tag_s"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_alignStart="@+id/t_img_tag_s" />
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+            <TextView
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_width="wrap_content"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_height="wrap_content"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:text="继电器状态"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:id="@+id/tv_title"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:paddingBottom="4dp"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_alignParentBottom="true"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_alignLeft="@+id/relay_switch_4"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_alignStart="@+id/relay_switch_4" />
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+            <TextView
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_width="wrap_content"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_height="wrap_content"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:text="关闭"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:paddingBottom="4dp"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:id="@+id/tv_status"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_alignTop="@+id/tv_title"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_alignParentRight="true"
+\end_layout
+
+\begin_layout Plain Layout
+
+                android:layout_alignParentEnd="true" />
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+        </RelativeLayout>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    </android.support.v7.widget.CardView>
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+通知部分需要从代码中编写，在下一部分中介绍。
+\end_layout
+
+\begin_layout Subsection
+业务逻辑编写
+\end_layout
+
+\begin_layout Standard
+在引入框架之后，需要进一步封装相应代码，这里使用单例模式封装了PahoConnection，代码如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public class PahoConnection implements ConnectionInterface {
+\end_layout
+
+\begin_layout Plain Layout
+
+	......
+    
+\end_layout
+
+\begin_layout Plain Layout
+
+    private PahoConnection(Context context) {
+\end_layout
+
+\begin_layout Plain Layout
+
+        // 从数据库中获取,如果获取不到就创建
+\end_layout
+
+\begin_layout Plain Layout
+
+        //RealmHelper helper = new RealmHelper(context);
+\end_layout
+
+\begin_layout Plain Layout
+
+        PahoClientCallback callback = new PahoClientCallback(context);
+\end_layout
+
+\begin_layout Plain Layout
+
+        mqttConnectOpts = new MqttConnectOptions();
+\end_layout
+
+\begin_layout Plain Layout
+
+        mqttConnectOpts.setConnectionTimeout(60);
+\end_layout
+
+\begin_layout Plain Layout
+
+        //mqttConnectOpts.setKeepAliveInterval(60);
+\end_layout
+
+\begin_layout Plain Layout
+
+        clientCallback = new PahoClientConnectionCallback(context);
+\end_layout
+
+\begin_layout Plain Layout
+
+        mqttAndroidClient = addNewClient(context);
+\end_layout
+
+\begin_layout Plain Layout
+
+        // 设置回调方法,处理连接断开和消息接收的问题
+\end_layout
+
+\begin_layout Plain Layout
+
+        mqttAndroidClient.setCallback(callback);
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    public static PahoConnection getInstance(Context context) {
+\end_layout
+
+\begin_layout Plain Layout
+
+        if (pahoConnection == null) {
+\end_layout
+
+\begin_layout Plain Layout
+
+            pahoConnection = new PahoConnection(context);
+\end_layout
+
+\begin_layout Plain Layout
+
+        }
+\end_layout
+
+\begin_layout Plain Layout
+
+        return pahoConnection;
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+然后是下面两个核心函数，发布(publish)消息的函数以及订阅(subscribe)消息的函数，代码如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+/**
+\end_layout
+
+\begin_layout Plain Layout
+
+* 发布函数
+\end_layout
+
+\begin_layout Plain Layout
+
+*/ 
+\end_layout
+
+\begin_layout Plain Layout
+
+public void publish(@NonNull String topic, @NonNull String message, @NonNull
+ int qos, @NonNull boolean retained) {
+\end_layout
+
+\begin_layout Plain Layout
+
+        try {
+\end_layout
+
+\begin_layout Plain Layout
+
+            Log.d("TAG", "topic == " + topic + "====message=== " + message
+ + " ====qos====" + qos);
+\end_layout
+
+\begin_layout Plain Layout
+
+            mqttAndroidClient.publish(topic, message.getBytes(), qos, retained);
+\end_layout
+
+\begin_layout Plain Layout
+
+            Log.d("TAG", "published");
+\end_layout
+
+\begin_layout Plain Layout
+
+        } catch (MqttSecurityException e) {
+\end_layout
+
+\begin_layout Plain Layout
+
+            Log.e(this.getClass().getCanonicalName(), "Failed to publish a
+ messged from the client with the handle ", e);
+\end_layout
+
+\begin_layout Plain Layout
+
+        } catch (MqttException e) {
+\end_layout
+
+\begin_layout Plain Layout
+
+            e.printStackTrace();
+\end_layout
+
+\begin_layout Plain Layout
+
+            Log.e(this.getClass().getCanonicalName(), "Failed to publish a
+ messged from the client with the handle ", e);
+\end_layout
+
+\begin_layout Plain Layout
+
+        } finally {
+\end_layout
+
+\begin_layout Plain Layout
+
+            Log.d("TAG", "publish finished!");
+\end_layout
+
+\begin_layout Plain Layout
+
+        }
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/**
+\end_layout
+
+\begin_layout Plain Layout
+
+* 订阅函数
+\end_layout
+
+\begin_layout Plain Layout
+
+*/
+\end_layout
+
+\begin_layout Plain Layout
+
+    public void subscribe(@NonNull String topic, @NonNull int qos) {
+\end_layout
+
+\begin_layout Plain Layout
+
+        if (mqttAndroidClient == null) {
+\end_layout
+
+\begin_layout Plain Layout
+
+            Log.d("TAG", "Client未初始化!");
+\end_layout
+
+\begin_layout Plain Layout
+
+            return;
+\end_layout
+
+\begin_layout Plain Layout
+
+        }
+\end_layout
+
+\begin_layout Plain Layout
+
+        try {
+\end_layout
+
+\begin_layout Plain Layout
+
+            mqttAndroidClient.subscribe(topic, qos);
+\end_layout
+
+\begin_layout Plain Layout
+
+            Log.d("TAG", "subscribed!");
+\end_layout
+
+\begin_layout Plain Layout
+
+        } catch (MqttException e) {
+\end_layout
+
+\begin_layout Plain Layout
+
+            e.printStackTrace();
+\end_layout
+
+\begin_layout Plain Layout
+
+        } finally {
+\end_layout
+
+\begin_layout Plain Layout
+
+            Log.d("TAG","subscribe finished!");
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+当订阅函数执行后，需要接收所有服务端转发到客户端的消息，获取到消息以后，通过广播的方式来将消息发送到Activity中来更新界面内容。代码如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public class PahoClientCallback implements MqttCallback {
+\end_layout
+
+\begin_layout Plain Layout
+
+	......
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	@Override
+\end_layout
+
+\begin_layout Plain Layout
+
+	public void messageArrived(String topic, MqttMessage message) throws Exception
+ {
+\end_layout
+
+\begin_layout Plain Layout
+
+		String messageContent = new String(message.getPayload());
+\end_layout
+
+\begin_layout Plain Layout
+
+		// 接收消息并进行数据处理与解析
+\end_layout
+
+\begin_layout Plain Layout
+
+		Log.d("TTTT","topic == " + topic + "message == " + messageContent);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		Intent intent = new Intent("com.iot.lsy.iot_android.data_received");
+\end_layout
+
+\begin_layout Plain Layout
+
+		intent.putExtra("topic",topic);
+\end_layout
+
+\begin_layout Plain Layout
+
+		intent.putExtra("message",messageContent);
+\end_layout
+
+\begin_layout Plain Layout
+
+		context.sendBroadcast(intent);
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	......
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+/**
+\end_layout
+
+\begin_layout Plain Layout
+
+* 广播接收者，更新界面
+\end_layout
+
+\begin_layout Plain Layout
+
+*/
+\end_layout
+
+\begin_layout Plain Layout
+
+public class DataBroadcastReceiver extends BroadcastReceiver {
+\end_layout
+
+\begin_layout Plain Layout
+
+        @Override
+\end_layout
+
+\begin_layout Plain Layout
+
+        public void onReceive(Context context, Intent intent) {
+\end_layout
+
+\begin_layout Plain Layout
+
+            String topic = intent.getStringExtra("topic");
+\end_layout
+
+\begin_layout Plain Layout
+
+            String message = intent.getStringExtra("message");
+\end_layout
+
+\begin_layout Plain Layout
+
+            Log.d("TAG"," 获取的消息内容为:::"+topic+":::"+message);
+\end_layout
+
+\begin_layout Plain Layout
+
+            // 更新界面信息
+\end_layout
+
+\begin_layout Plain Layout
+
+			dataMonitorListener.onDataReceived(topic, message);
+\end_layout
+
+\begin_layout Plain Layout
+
+        }
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+最后要在Activity中初始化相关内容使其进行工作，代码如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public class MainActivity extends AppCompatActivity {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    private IntentFilter filter;
+\end_layout
+
+\begin_layout Plain Layout
+
+    private DataBroadcastReceiver receiver;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    @Override
+\end_layout
+
+\begin_layout Plain Layout
+
+    protected void onCreate(Bundle savedInstanceState) {
+\end_layout
+
+\begin_layout Plain Layout
+
+        super.onCreate(savedInstanceState);
+\end_layout
+
+\begin_layout Plain Layout
+
+        setContentView(R.layout.activity_main);
+\end_layout
+
+\begin_layout Plain Layout
+
+        ......
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+        // 创建线程,连接服务器并订阅消息
+\end_layout
+
+\begin_layout Plain Layout
+
+        PahoConnection connection = PahoConnection.getInstance(getApplicationCont
+ext());
+\end_layout
+
+\begin_layout Plain Layout
+
+        MqttConnectOptions options = connection.getMqttConnectOpts();
+\end_layout
+
+\begin_layout Plain Layout
+
+        connection.connect(options);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+        // 注册广播接收
+\end_layout
+
+\begin_layout Plain Layout
+
+        filter = new IntentFilter();
+\end_layout
+
+\begin_layout Plain Layout
+
+        filter.addAction("com.iot.lsy.iot_android.data_received");
+\end_layout
+
+\begin_layout Plain Layout
+
+        receiver = new DataBroadcastReceiver();
+\end_layout
+
+\begin_layout Plain Layout
+
+        registerReceiver(receiver,filter);
+\end_layout
+
+\begin_layout Plain Layout
+
+        Log.d("TAG","注册广播接收者！");
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+这样所有的代码就编写完成了！
+\end_layout
+
+\begin_layout Chapter
+结论
+\end_layout
+
+\begin_layout Standard
+这篇论文详细阐述了利用树莓派和Arduino来搭建物联网系统的过程，说明了在搭建过程中的详细操作，力求将各个工作环节描述清楚，让后续对物联网方面有兴趣的同学能在
+这篇论文的引导下，搭建自己的物联网系统，并发散思维，培养结合多种编程语言的开发能力，能够为深入学习做一个入门引导，提升自身整合资源、利用资源的能力。
+\end_layout
+
+\begin_layout Chapter
+参考文献
+\end_layout
+
+\begin_layout Standard
+[1] 关庆余，李鸿彬，于波　MQTT协议在Android平台上的研究与应用　《计算机系统应用》　2014年04期
+\end_layout
+
+\begin_layout Standard
+[2] 顾亚文　基于MQTT协议的通用智能家居系统设计与实现　《西安电子科技大学》　2014年
+\end_layout
+
+\begin_layout Standard
+[3] 温彬民　一种基于自适应心跳机制的MQTT通信协议的研究与应用　《华南理工大学》　2015年
+\end_layout
+
+\begin_layout Standard
+[4] Urs Hunkeler，Hong Linh Truong，Andy Stanford-Clark MQTT-S — A publish/subscri
+be protocol for Wireless Sensor Networks 《Communication Systems Software
+ and Middleware and Workshops, 2008.
+ COMSWARE 2008.
+ 3rd International Conference on》6-10 Jan.
+ 2008
+\end_layout
+
+\begin_layout Standard
+[5] Ian Warren Andrew Meads ; Satish Srirama ; Thiranjith Weerasinghe ;
+ Carlos Paniagua Push Notification Mechanisms for Pervasive Smartphone Applicati
+ons 《IEEE Pervasive Computing (Volume:13 , Issue: 2 )》 Apr.-June.
+ 2014
+\end_layout
+
+\begin_layout Standard
+[6] 盖荣丽，钱玉磊，李鸿彬，贾军营　基于MQTT的企业消息推送系统 《计算机系统应用》 2015年11期 
+\end_layout
+
+\begin_layout Standard
+[7] 何宏辉　Android开发进阶--从小工到专家 人民邮电出版社
+\end_layout
+
+\begin_layout Standard
+[8] Bill Lubanovic　Introducing Python　人民邮电出版社
+\end_layout
+
+\begin_layout Standard
+[9] Matteo Collina　Introducing the QEST broker: Scaling the IoT by bridging
+ MQTT and REST　《ARCES (Advanced Research Centre for Electronic Systems)》9
+ - 12 Sept.
+ 2012
+\end_layout
+
+\begin_layout Standard
+[10] Seong-Min Kim，Hoan-Suk Choi，Woo-Seop Rhee　IoT home gateway for auto-configu
+ration and management of MQTT devices　《Wireless Sensors (ICWiSe), 2015 IEEE
+ Conference on》12-17 24-26 Aug.
+ 2015
+\end_layout
+
+\begin_layout Standard
+[11] 姚丹，谢雪松，杨建军　基于MQTT协议的物联网通信系统的研究与实现　《信息通信》2016年 第3期 33-35页
+\end_layout
+
+\begin_layout Standard
+[12] 张亚慧　物联网环境下轻量级发布/订阅系统的设计与实现　《北京邮电大学》 2015年
+\end_layout
+
+\begin_layout Standard
+[13] 孔祥龙，王燕　适用于低成本物联网终端的消息通讯协议比较研究　《无线互联科技》2015年 第16期 49-52页
+\end_layout
+
+\begin_layout Standard
+[14] 张波，杨国华　MQTT发布／订阅消息机制在Arduino传感节点的实现　《电子世界》2013年 第22期 93-94页
+\end_layout
+
+\begin_layout Standard
+[15] 关庆余，李鸿彬，于波　MQTT协议在Android平台上的研究与应用　《计算机系统应用》2014 年第23卷第 4 期 196-200页
+\end_layout
+
+\begin_layout Chapter
+致谢及声明
+\end_layout
+
+\begin_layout Standard
+首先感谢指导老师宿宝臣教授，从初期搭建系统到后期编写论文，宿老师给予了我最大限度的帮助，鼓励我发散思维的同时，也要用科学严谨的态度去思考和操作；然后感谢我的同学
+张树新、林振男，在搭建过程中给予我很多建议，提供了元器件支持和编写代码上的规范指导，令我获益良多；最后需要感谢整个一号实验楼314实验室，感谢每一个同学的支持，
+希望能将开源和探索的思想继续传递下去，影响更多的同学和老师！
+\end_layout
+
+\end_body
+\end_document

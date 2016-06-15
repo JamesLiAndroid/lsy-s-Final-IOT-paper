@@ -1,0 +1,17 @@
+.hg
+.hgignore
+.hgtags
+.cproject
+.project
+/dist
+/doc
+/test
+/scutthesis0
+/cover
+sample_test.aux
+sample_test.bbl
+sample_test.blg
+sample_test.idx
+sample_test.log
+sample_test.out
+sample_test.toc
